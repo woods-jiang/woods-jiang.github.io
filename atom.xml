@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Woods Jiang]]></title>
+  <subtitle><![CDATA[less is more]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://woodsjiang.com/"/>
+  <updated>2015-04-04T07:33:35.767Z</updated>
+  <id>http://woodsjiang.com/</id>
+  
+  <author>
+    <name><![CDATA[Woods Jiang]]></name>
+    <email><![CDATA[woods.jiang.1@gmail.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[[leetcode][bash]Word Frequency]]></title>
+    <link href="http://woodsjiang.com/2015/04/04/leetcode-bash-Word-Frequency/"/>
+    <id>http://woodsjiang.com/2015/04/04/leetcode-bash-Word-Frequency/</id>
+    <published>2015-04-04T06:51:49.000Z</published>
+    <updated>2015-04-04T07:33:35.767Z</updated>
+    <content type="html"><![CDATA[<h1 id="题目">题目</h1><p>来源：<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="external">https://leetcode.com/problems/word-frequency/</a><br>Write a bash script to calculate the frequency of each word in a text file <code>words.txt</code>.</p>
+<p>For simplicity sake, you may assume:</p>
+<ul>
+<li><code>words.txt</code> contains only lowercase characters and space <code>&#39; &#39;</code> characters.</li>
+<li>Each word must consist of lowercase characters only.</li>
+<li>Words are separated by one or more whitespace characters.</li>
+</ul>
+<p>For example, assume that <code>words.txt</code> has the following content:</p>
+<pre><code><span class="keyword">the</span> <span class="property">day</span> <span class="keyword">is</span> sunny <span class="keyword">the</span> <span class="keyword">the</span>
+<span class="keyword">the</span> sunny <span class="keyword">is</span> <span class="keyword">is</span>
+</code></pre><p>Your script should output the following, sorted by descending frequency:</p>
+<pre><code><span class="keyword">the</span> <span class="number">4</span>
+<span class="keyword">is</span> <span class="number">3</span>
+sunny <span class="number">2</span>
+<span class="property">day</span> <span class="number">1</span>
+</code></pre><p><strong>Note:</strong><br>Don’t worry about handling ties, it is guaranteed that each word’s frequency count is unique.</p>
+<h1 id="Bash脚本">Bash脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat words.txt | tr <span class="operator">-s</span> <span class="string">' '</span> <span class="string">'\n'</span>|sort|uniq -c|sort -rn| awk <span class="string">'&#123;print $2":"$1&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>解释：<br>tr -s：使用指定字符串替换出现一次或者连续出现多次的字符串，这里就是将一个或者多个空格换成换行符<br>sort：将单词从小到大排序<br>uniq -c：uniq用来去掉连续出现的单词<br>sort -rn：sort默认是升序排列，-r则表示降序，-n则是按照数值大小排序<br>awk ‘{print$2” “$1}’：则是格式化输出，内容的每一行为<code>“ ”</code>中的内容</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="题目">题目</h1><p>来源：<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="external">https://leetcode.com/problem]]>
+    </summary>
+    
+      <category term="leetcode" scheme="http://woodsjiang.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[test]]></title>
+    <link href="http://woodsjiang.com/2015/04/03/test/"/>
+    <id>http://woodsjiang.com/2015/04/03/test/</id>
+    <published>2015-04-03T03:10:56.000Z</published>
+    <updated>2015-04-03T03:12:17.806Z</updated>
+    <content type="html"><![CDATA[<h1 id="一级标题">一级标题</h1><h1 id="二级">二级</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="一级标题">一级标题</h1><h1 id="二级">二级</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pr]]>
+    </summary>
+    
+      <category term="test" scheme="http://woodsjiang.com/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://woodsjiang.com/2015/03/31/hello-world/"/>
+    <id>http://woodsjiang.com/2015/03/31/hello-world/</id>
+    <published>2015-03-31T13:19:30.124Z</published>
+    <updated>2015-03-31T13:19:30.124Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+</feed>
