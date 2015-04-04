@@ -4,7 +4,7 @@
   <subtitle><![CDATA[less is more]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-04-04T07:33:35.767Z</updated>
+  <updated>2015-04-04T11:10:55.434Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://woodsjiang.com/2015/04/04/leetcode-bash-Word-Frequency/"/>
     <id>http://woodsjiang.com/2015/04/04/leetcode-bash-Word-Frequency/</id>
     <published>2015-04-04T06:51:49.000Z</published>
-    <updated>2015-04-04T07:33:35.767Z</updated>
+    <updated>2015-04-04T11:10:55.434Z</updated>
     <content type="html"><![CDATA[<h1 id="题目">题目</h1><p>来源：<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="external">https://leetcode.com/problems/word-frequency/</a><br>Write a bash script to calculate the frequency of each word in a text file <code>words.txt</code>.</p>
 <p>For simplicity sake, you may assume:</p>
 <ul>
@@ -44,6 +44,8 @@ sunny <span class="number">2</span>
     </summary>
     
       <category term="leetcode" scheme="http://woodsjiang.com/tags/leetcode/"/>
+    
+      <category term="leetcode" scheme="http://woodsjiang.com/categories/leetcode/"/>
     
   </entry>
   
