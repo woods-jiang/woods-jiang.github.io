@@ -80,6 +80,77 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/07/在matlab中添加livsvm及其使用介绍/" title="在matlab中添加livsvm及其使用介绍" itemprop="url">在matlab中添加livsvm及其使用介绍</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-07T01:12:57.000Z" itemprop="datePublished"> 发表于 2015-04-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="安装">安装</h1><p>livsvm3.20+matlab2014a</p>
+<p>在网上看到很多方法都是比较老版本的libsvm了，现在新版本是不用编译的，在文件夹中已经编译好了，只需要我们将其添加到matlab对应的文件夹中即可。</p>
+<p>首先，<a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/" target="_blank" rel="external">下载livsvm</a>，我下载的是3.20版本的</p>
+<p>然后将其解压到matlab的安装文件夹下面（当然，任意文件夹都可以，主要是你下一步设置路径时，能够找到就行了）。</p>
+<p>最后，设置路径，如下图，注意，只需要将libsvm目录下的windows这个目录加入到其路径即可。<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/matlab_libsvm.jpg" alt=""></p>
+<h1 id="使用">使用</h1><p>读入livsvm自带的一个数据集<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[heart_scale_label, heart_scale_inst] =libsvmread('heart_scale');</span><br></pre></td></tr></table></figure></p>
+<p>注意！这个地方的“heart_scale”文件存在于libsvm目录下，虽然我们刚才将这个文件夹添加到了路径中，但是还是不能直接读取，需要将执行路径切换到该目录下，才能够读取文件。</p>
+<p>开始训练<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = svmtrain(heart_scale_label,heart_scale_inst);</span><br></pre></td></tr></table></figure></p>
+<p>当然这里默认的是线性svm，如果需要其他的方法可以在函数的后面加上参数。</p>
+<p>预测结果<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">svmpredict(heart_scale_label,heart_scale_inst,model);</span><br><span class="line">Accuracy = <span class="number">86.6667</span>% (<span class="number">234</span>/<span class="number">270</span>) (classification)</span><br></pre></td></tr></table></figure></p>
+<p>下面看看svm的高斯核函数在上面例子的威力，训练参数设置如下<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = svmtrain(heart_scale_label,heart_scale_inst, '-s 0 -t 2 -g 2');</span><br></pre></td></tr></table></figure></p>
+<p>预测结果<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">svmpredict(heart_scale_label, heart_scale_inst, model);</span><br><span class="line">Accuracy = <span class="number">99.2593</span>% (<span class="number">268</span>/<span class="number">270</span>) (classification)</span><br></pre></td></tr></table></figure></p>
+<p>当然，这并不是最佳的参数，设置‘-g 3’时，还可以达到99.6296%</p>
+<p>下面是一些参数的具体意思<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">-s</span> svm_<span class="built_in">type</span> : <span class="built_in">set</span> <span class="built_in">type</span> of SVM (default <span class="number">0</span>)</span><br><span class="line">	<span class="number">0</span> -- C-SVC		(multi-class classification)</span><br><span class="line">	<span class="number">1</span> -- nu-SVC		(multi-class classification)</span><br><span class="line">	<span class="number">2</span> -- one-class SVM	</span><br><span class="line">	<span class="number">3</span> -- epsilon-SVR	(regression)</span><br><span class="line">	<span class="number">4</span> -- nu-SVR		(regression)</span><br><span class="line">-t kernel_<span class="built_in">type</span> : <span class="built_in">set</span> <span class="built_in">type</span> of kernel <span class="keyword">function</span> (default <span class="number">2</span>)</span><br><span class="line">	<span class="number">0</span> -- linear: u<span class="string">'*v</span><br><span class="line">	1 -- polynomial: (gamma*u'</span>*v + coef0)^degree</span><br><span class="line">	<span class="number">2</span> -- radial basis <span class="keyword">function</span>: exp(-gamma*|u-v|^<span class="number">2</span>)</span><br><span class="line">	<span class="number">3</span> -- sigmoid: tanh(gamma*u<span class="string">'*v + coef0)</span><br><span class="line">	4 -- precomputed kernel (kernel values in training_set_file)</span><br><span class="line">-d degree : set degree in kernel function (default 3)</span><br><span class="line">-g gamma : set gamma in kernel function (default 1/num_features)</span><br><span class="line">-r coef0 : set coef0 in kernel function (default 0)</span><br><span class="line">-c cost : set the parameter C of C-SVC, epsilon-SVR, and nu-SVR (default 1)</span><br><span class="line">-n nu : set the parameter nu of nu-SVC, one-class SVM, and nu-SVR (default 0.5)</span><br><span class="line">-p epsilon : set the epsilon in loss function of epsilon-SVR (default 0.1)</span><br><span class="line">-m cachesize : set cache memory size in MB (default 100)</span><br><span class="line">-e epsilon : set tolerance of termination criterion (default 0.001)</span><br><span class="line">-h shrinking : whether to use the shrinking heuristics, 0 or 1 (default 1)</span><br><span class="line">-b probability_estimates : whether to train a SVC or SVR model for probability estimates, 0 or 1 (default 0)</span><br><span class="line">-wi weight : set the parameter C of class i to weight*C, for C-SVC (default 1)</span><br><span class="line">-v n: n-fold cross validation mode</span><br><span class="line">-q : quiet mode (no outputs)</span></span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/07/在matlab中添加livsvm及其使用介绍/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/05/STL中at访问元素与-访问元素的区别/" title="STL中at访问元素与[]访问元素的区别" itemprop="url">STL中at访问元素与[]访问元素的区别</a>
   </h1>
   <p class="article-author">By
@@ -227,64 +298,6 @@ sunny <span class="number">2</span>
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/03/test/" title="test" itemprop="url">test</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-03T03:10:56.000Z" itemprop="datePublished"> 发表于 2015-04-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="一级标题">一级标题</h1><h1 id="二级">二级</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/test/">test</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/03/test/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/03/31/hello-world/" title="Hello World" itemprop="url">Hello World</a>
   </h1>
   <p class="article-author">By
@@ -354,6 +367,10 @@ sunny <span class="number">2</span>
 		<ul>
 		
 		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/STL/" title="STL">STL<sup>1</sup></a></li>
 		  
 		
@@ -369,10 +386,6 @@ sunny <span class="number">2</span>
 <div class="tagslist">
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
-			
 		
 			
 				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>1</sup></a></li>
