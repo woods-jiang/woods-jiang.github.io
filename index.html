@@ -80,6 +80,75 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/07/K-fold交叉验证/" title="K-fold交叉验证" itemprop="url">K-fold交叉验证</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-07T03:16:27.000Z" itemprop="datePublished"> 发表于 2015-04-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
+<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测试集Test。</p>
+<p>二、再将训练集Train分成<code>K</code>份，做交叉验证</p>
+<p>   (1) 现在从模型$M_{1}$开始，将数据分成<code>K</code>份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一个不同的测试集，剩下的9份作为训练集，直到10份数据每一分都做过一次测试集为止，这时，我们得到10个评分，将这10个评分取平均值，得到模型M1的评分$f_1$。</p>
+<p>   (2) 现在开始对模型$M_2$做评分，跟上面采用一样的验证方法，最终得到评分$f_2$</p>
+<p>   (3) m个模型，一共得到了m个评分，最终取效果最好的那个模型$M_i$。</p>
+<p>三、使用这个评分最好的模型$M_i$的参数，对所有的训练集Train再训练一次。最终数据就训练好了，然后在最开始划分的测试数据集Test上进行测试。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Machine-Learning/">Machine Learning</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/07/K-fold交叉验证/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/07/在matlab中添加livsvm及其使用介绍/" title="在matlab中添加livsvm及其使用介绍" itemprop="url">在matlab中添加livsvm及其使用介绍</a>
   </h1>
   <p class="article-author">By
@@ -122,6 +191,11 @@
   <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
 </div>
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Machine-Learning/">Machine Learning</a>
+  </div>
 
 </div>
 
@@ -367,7 +441,7 @@ sunny <span class="number">2</span>
 		<ul>
 		
 		  
-			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>1</sup></a></li>
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>2</sup></a></li>
 		  
 		
 		  
@@ -386,6 +460,10 @@ sunny <span class="number">2</span>
 <div class="tagslist">
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Machine-Learning/" title="Machine Learning">Machine Learning<sup>2</sup></a></li>
+			
 		
 			
 				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>1</sup></a></li>
@@ -576,6 +654,16 @@ var disqus_shortname = 'woodsjiang';
 <!-- Tiny_search Begin -->
 
 <!-- Tiny_search End -->
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
   </body>
  </html>

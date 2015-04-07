@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Talk less. Think more. Do more than more.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-04-07T01:19:36.507Z</updated>
+  <updated>2015-04-07T08:18:14.716Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -15,11 +15,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[K-fold交叉验证]]></title>
+    <link href="http://woodsjiang.com/2015/04/07/K-fold%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/"/>
+    <id>http://woodsjiang.com/2015/04/07/K-fold交叉验证/</id>
+    <published>2015-04-07T03:16:27.000Z</published>
+    <updated>2015-04-07T08:18:14.716Z</updated>
+    <content type="html"><![CDATA[<h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
+<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测试集Test。</p>
+<p>二、再将训练集Train分成<code>K</code>份，做交叉验证</p>
+<p>   (1) 现在从模型$M_{1}$开始，将数据分成<code>K</code>份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一个不同的测试集，剩下的9份作为训练集，直到10份数据每一分都做过一次测试集为止，这时，我们得到10个评分，将这10个评分取平均值，得到模型M1的评分$f_1$。</p>
+<p>   (2) 现在开始对模型$M_2$做评分，跟上面采用一样的验证方法，最终得到评分$f_2$</p>
+<p>   (3) m个模型，一共得到了m个评分，最终取效果最好的那个模型$M_i$。</p>
+<p>三、使用这个评分最好的模型$M_i$的参数，对所有的训练集Train再训练一次。最终数据就训练好了，然后在最开始划分的测试数据集Test上进行测试。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
+<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测]]>
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://woodsjiang.com/tags/Machine-Learning/"/>
+    
+      <category term="Machine Learning" scheme="http://woodsjiang.com/categories/Machine-Learning/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[在matlab中添加livsvm及其使用介绍]]></title>
     <link href="http://woodsjiang.com/2015/04/07/%E5%9C%A8matlab%E4%B8%AD%E6%B7%BB%E5%8A%A0livsvm%E5%8F%8A%E5%85%B6%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/"/>
     <id>http://woodsjiang.com/2015/04/07/在matlab中添加livsvm及其使用介绍/</id>
     <published>2015-04-07T01:12:57.000Z</published>
-    <updated>2015-04-07T01:19:36.507Z</updated>
+    <updated>2015-04-07T03:17:32.655Z</updated>
     <content type="html"><![CDATA[<h1 id="安装">安装</h1><p>livsvm3.20+matlab2014a</p>
 <p>在网上看到很多方法都是比较老版本的libsvm了，现在新版本是不用编译的，在文件夹中已经编译好了，只需要我们将其添加到matlab对应的文件夹中即可。</p>
 <p>首先，<a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/" target="_blank" rel="external">下载livsvm</a>，我下载的是3.20版本的</p>
@@ -40,6 +65,8 @@
 <p>在网上看到很多方法都是比较老版本的libsvm了，现在新版本是不用编译的，在文件夹中已经编译好了，只需要我们将其添加到matlab对应的文件夹中即可。</p>
 <p>首先，<a]]>
     </summary>
+    
+      <category term="Machine Learning" scheme="http://woodsjiang.com/tags/Machine-Learning/"/>
     
       <category term="Machine Learning" scheme="http://woodsjiang.com/categories/Machine-Learning/"/>
     
