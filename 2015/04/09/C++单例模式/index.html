@@ -1,0 +1,540 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>C++单例模式 | Woods Jiang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Woods Jiang">
+    
+
+    
+    <meta name="description" content="单例模式定义单例模式是设计模式的一种，即只能产生一个对象的类
+懒汉模式所谓懒汉模式即第一次调用的时候才产生对象。这需要用锁才能够保证线程安全，但是如果处理大量数据时，性能不好。
+12345678910111213141516171819202122class CSingleton&amp;#123;public:	static CSingleton* getInstance()	&amp;#123;		if (N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++单例模式">
+<meta property="og:url" content="http://woodsjiang.com/2015/04/09/C++单例模式/index.html">
+<meta property="og:site_name" content="Woods Jiang">
+<meta property="og:description" content="单例模式定义单例模式是设计模式的一种，即只能产生一个对象的类
+懒汉模式所谓懒汉模式即第一次调用的时候才产生对象。这需要用锁才能够保证线程安全，但是如果处理大量数据时，性能不好。
+12345678910111213141516171819202122class CSingleton&amp;#123;public:	static CSingleton* getInstance()	&amp;#123;		if (N">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++单例模式">
+<meta name="twitter:description" content="单例模式定义单例模式是设计模式的一种，即只能产生一个对象的类
+懒汉模式所谓懒汉模式即第一次调用的时候才产生对象。这需要用锁才能够保证线程安全，但是如果处理大量数据时，性能不好。
+12345678910111213141516171819202122class CSingleton&amp;#123;public:	static CSingleton* getInstance()	&amp;#123;		if (N">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Woods Jiang" title="Woods Jiang"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Woods Jiang">Woods Jiang</a></h1>
+				<h2 class="blog-motto">Talk less. Think more. Do more than more.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:woodsjiang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/09/C++单例模式/" title="C++单例模式" itemprop="url">C++单例模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-09T14:59:03.000Z" itemprop="datePublished"> 发表于 2015-04-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#单例模式定义"><span class="toc-number">1.</span> <span class="toc-text">单例模式定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#懒汉模式"><span class="toc-number">2.</span> <span class="toc-text">懒汉模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#饿汉模式"><span class="toc-number">3.</span> <span class="toc-text">饿汉模式</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="单例模式定义">单例模式定义</h1><p>单例模式是设计模式的一种，即只能产生一个对象的类</p>
+<h1 id="懒汉模式">懒汉模式</h1><p>所谓懒汉模式即第一次调用的时候才产生对象。这需要用锁才能够保证线程安全，但是如果处理大量数据时，性能不好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">static</span> CSingleton* getInstance()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (NULL == m_instance)</span><br><span class="line">		&#123;</span><br><span class="line">			Lock();</span><br><span class="line">			<span class="keyword">if</span> (NULL == m_instance)</span><br><span class="line">			&#123;</span><br><span class="line">				m_instance = <span class="keyword">new</span> CSingleton;</span><br><span class="line">			&#125;</span><br><span class="line">			UnLock();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> m_instance;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">static</span> CSingleton* m_instance;</span><br><span class="line">	CSingleton()&#123;&#125;</span><br><span class="line">	CSingleton(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">	CSingleton &amp;<span class="keyword">operator</span> =(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>注意</code>，这里的普通构造函数、拷贝构造函数还有重载的操作符“=”都是私有的。而且拷贝构造函数和重载的“=”都不需要实现，这样的好处是即使是在友元类中也无法使用。</p>
+<p>上面代码也并不完美，new出来的空间还没有被回收呢，我们都知道，在程序结束时，系统会自动析构所有的全局对象，系统也会自动析构所有类的静态成员变量，利用这个特征，我们在类里面加入一个类CGarbageCollector，在该类中定义一个静态成员变量，在其析构函数中释放单例模式中new出来的空间。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">static</span> CSingleton * GetInstance()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (m_pInstance == NULL)</span><br><span class="line">		&#123;</span><br><span class="line">			m_pInstance = <span class="keyword">new</span> CSingleton();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> m_pInstance;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	CSingleton()&#123;&#125;</span><br><span class="line">	CSingleton(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">	CSingleton &amp;<span class="keyword">operator</span> =(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">	<span class="keyword">static</span> CSingleton *m_pInstance;</span><br><span class="line">	<span class="keyword">class</span> CGarbageCollector</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		~CGarbageCollector()</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (CSingleton::m_pInstance)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">delete</span> CSingleton::m_pInstance;</span><br><span class="line">				CSingleton::m_pInstance = NULL;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">static</span> CGarbageCollector Garb;  <span class="comment">//定义一个静态成员变量，程序结束时，系统会自动调用它的析构函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>更加简洁的懒汉模式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">static</span> CSingleton &amp; GetInstance()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">static</span> CSingleton instance;   <span class="comment">//局部静态变量</span></span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	CSingleton()&#123;&#125;</span><br><span class="line">	CSingleton(<span class="keyword">const</span> CSingleton &amp;);</span><br><span class="line">	CSingleton &amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> CSingleton &amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里巧妙的运用了静态变量，而且还不需要考虑销毁的问题，不过要非常<code>注意</code>的是，这里在C++0x及其以后的标准中才是线程安全的。</p>
+<h1 id="饿汉模式">饿汉模式</h1><p>为什么叫做饿汉模式呢？这是相对于懒汉模式来说的，因为类的静态成员变量在执行主函数之前就初始化了的，也就是说，这个单例对象在主函数执行前就创建了，想饿汉一样，看见东西先吃了再说，这里就是不管三七二十一，不管用不用得上，先创建一个对象再说。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">static</span> CSingleton* getInstance()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> m_pInstance;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">static</span> CSingleton* m_pInstance;</span><br><span class="line">	CSingleton()&#123;&#125;</span><br><span class="line">	CSingleton(<span class="keyword">const</span> CSingleton &amp;);</span><br><span class="line">	CSingleton &amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> CSingleton &amp;);</span><br><span class="line">	<span class="keyword">class</span> CGarbageCollector</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		~CGarbageCollector()</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (CSingleton::m_pInstance)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">delete</span> CSingleton::m_pInstance;</span><br><span class="line">				CSingleton::m_pInstance = NULL;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">static</span> CGarbageCollector Garb;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CSingleton* CSingleton::m_pInstance = <span class="keyword">new</span> CSingleton;</span><br></pre></td></tr></table></figure>
+<p>同样，采用了跟上面一样的方法来释放内存。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C/">C++</a><a href="/tags/设计模式/">设计模式</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://woodsjiang.com/2015/04/09/C++单例模式/" data-title="C++单例模式 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/09/找出词典中所有的变位词/"  title="找出词典中所有的变位词">
+ <strong>下一篇：</strong><br/> 
+ <span>找出词典中所有的变位词
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+	<script type="text/javascript">
+	var disqus_shortname = 'woodsjiang';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#单例模式定义"><span class="toc-number">1.</span> <span class="toc-text">单例模式定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#懒汉模式"><span class="toc-number">2.</span> <span class="toc-text">懒汉模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#饿汉模式"><span class="toc-number">3.</span> <span class="toc-text">饿汉模式</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Algorithm/" title="Algorithm">Algorithm<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/STL/" title="STL">STL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Machine-Learning/" title="Machine Learning">Machine Learning<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/STL/" title="STL">STL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/woods-jiang" target="_blank" title="我的github">我的github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://weibo.com/woodsjiang" target="_blank" title="我的新浪微博">我的新浪微博</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.douban.com/people/124560646" target="_blank" title="我的豆瓣">我的豆瓣</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5059000554&verifier=a3fec3ea&dpc=1"></iframe>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> If you’re bored, you’re doing something wrong. <br/>
+			Devils are in the details.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://woodsjiang.com/about" target="_blank" title="Woods Jiang">Woods Jiang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+    
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'woodsjiang';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </body>
+</html>
