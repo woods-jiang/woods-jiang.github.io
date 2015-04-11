@@ -123,7 +123,7 @@ words.txt contains only lo">
 sunny <span class="number">2</span>
 <span class="property">day</span> <span class="number">1</span>
 </code></pre><p><strong>Note:</strong><br>Don’t worry about handling ties, it is guaranteed that each word’s frequency count is unique.</p>
-<h1 id="Bash脚本">Bash脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat words.txt | tr <span class="operator">-s</span> <span class="string">' '</span> <span class="string">'\n'</span>|sort|uniq -c|sort -rn| awk <span class="string">'&#123;print $2":"$1&#125;'</span></span><br></pre></td></tr></table></figure>
+<h1 id="Bash脚本">Bash脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat words.txt | tr <span class="operator">-s</span> <span class="string">' '</span> <span class="string">'\n'</span>|sort|uniq -c|sort -rn| awk <span class="string">'&#123;print $2" "$1&#125;'</span></span><br></pre></td></tr></table></figure>
 <p>解释：<br>tr -s：使用指定字符串替换出现一次或者连续出现多次的字符串，这里就是将一个或者多个空格换成换行符<br>sort：将单词从小到大排序<br>uniq -c：uniq用来去掉连续出现的单词<br>sort -rn：sort默认是升序排列，-r则表示降序，-n则是按照数值大小排序<br>awk ‘{print$2” “$1}’：则是格式化输出，内容的每一行为<code>“ ”</code>中的内容</p>
   
 	</div>
