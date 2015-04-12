@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Talk less. Think more. Do more than more.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-04-10T06:59:58.272Z</updated>
+  <updated>2015-04-12T14:51:58.189Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[[leetcode]NumberOfIslands]]></title>
+    <title><![CDATA[[leetcode]Number of Islands]]></title>
     <link href="http://woodsjiang.com/2015/04/10/leetcode-NumberOfIslands/"/>
     <id>http://woodsjiang.com/2015/04/10/leetcode-NumberOfIslands/</id>
     <published>2015-04-10T06:58:36.000Z</published>
-    <updated>2015-04-10T06:59:58.272Z</updated>
+    <updated>2015-04-12T14:51:58.189Z</updated>
     <content type="html"><![CDATA[<h1 id="原题题目">原题题目</h1><p>Given a 2d grid map of <code>&#39;1&#39;</code>s (land) and <code>&#39;0&#39;</code>s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.</p>
 <p><strong><em>Example 1:</em></strong></p>
 <pre><code>11110
