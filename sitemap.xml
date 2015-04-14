@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://woodsjiang.com/2015/04/14/leetcode-Compare-Version-Numbers/</loc>
+    <lastmod>2015-04-14T08:34:02.672Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://woodsjiang.com/2015/04/10/leetcode-NumberOfIslands/</loc>
     <lastmod>2015-04-12T14:51:58.189Z</lastmod>
   </url>
