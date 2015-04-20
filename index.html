@@ -80,6 +80,78 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/" title="[leetcode]Find Minimum in Rotated Sorted Array" itemprop="url">[leetcode]Find Minimum in Rotated Sorted Array</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-20T14:19:41.000Z" itemprop="datePublished"> 发表于 2015-04-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>Find the minimum element.</p>
+<p>You may assume no duplicate exists in the array.</p>
+<h1 id="数组中无重复元素">数组中无重复元素</h1><p>观察旋转数组特点，采用二分查找的思想，把查找时间按复杂度降低到O(log$n$)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.size()-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span>==end)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(nums[start] &gt;= nums[end])</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(end - start == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                mid = end;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (start+end)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nums[start] &lt; nums[mid])</span><br><span class="line">                start = mid;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(nums[mid] &lt; nums[end])</span></span><br><span class="line">                end </span>= mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[mid];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h1 id="数组中有重复元素">数组中有重复元素</h1><pre><code>Follow up <span class="keyword">for</span> <span class="string">"Find Minimum in Rotated Sorted Array"</span>:
+What <span class="keyword">if</span> duplicates are allowed?
+
+Would this affect <span class="keyword">the</span> <span class="command">run</span>-<span class="property">time</span> complexity? How <span class="keyword">and</span> why?
+</code></pre><p>当数组中存在重复元素时，比如<code>1 0 1 1 1</code>，上面的方法就会错过最小值0了。<br>如果出现这种极端情况时，就只能挨着一个一个找最小值了。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.size()-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span>==end)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(nums[start] &gt;= nums[end])</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(end - start == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                mid = end;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (start+end)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nums[start]==nums[mid]&amp;&amp;nums[mid]&amp;&amp;nums[end])</span><br><span class="line">                <span class="keyword">return</span> FindMinInOrder(nums);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nums[start] &lt;= nums[mid])</span><br><span class="line">                start = mid;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(nums[mid] &lt;= nums[end])</span></span><br><span class="line">                end </span>= mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[mid];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">FindMinInOrder</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result=nums[<span class="number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt; result)</span><br><span class="line">            &#123;</span><br><span class="line">                result = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/14/leetcode-Compare-Version-Numbers/" title="[leetcode]Compare Version Numbers" itemprop="url">[leetcode]Compare Version Numbers</a>
   </h1>
   <p class="article-author">By
@@ -745,7 +817,7 @@ sunny <span class="number">2</span>
 		  
 		
 		  
-			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>3</sup></a></li>
+			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -758,7 +830,7 @@ sunny <span class="number">2</span>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>3</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>4</sup></a></li>
 			
 		
 			
