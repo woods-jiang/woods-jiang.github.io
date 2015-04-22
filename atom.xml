@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Talk less. Think more. Do more than more.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-04-22T09:09:54.547Z</updated>
+  <updated>2015-04-22T09:12:40.727Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -15,15 +15,17 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[聊聊函数指针]]></title>
-    <link href="http://woodsjiang.com/2015/04/22/%E8%81%8A%E8%81%8A%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/"/>
-    <id>http://woodsjiang.com/2015/04/22/聊聊函数指针/</id>
+    <title><![CDATA[函数指针的定义方法]]></title>
+    <link href="http://woodsjiang.com/2015/04/22/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95/"/>
+    <id>http://woodsjiang.com/2015/04/22/函数指针的定义方法/</id>
     <published>2015-04-22T08:28:01.000Z</published>
-    <updated>2015-04-22T09:09:54.547Z</updated>
+    <updated>2015-04-22T09:12:40.727Z</updated>
     <content type="html"><![CDATA[<h1 id="函数指针">函数指针</h1><p>函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。</p>
 <p>C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。</p>
 <p>函数指针有两个用途：调用函数和做函数的参数。</p>
-<h1 id="三种函数指针">三种函数指针</h1><p>第一种是普通方法，没有使用typedef<br>第二种是最常见写法，使用typedef，可以简化写法<br>第三种是第二种方法的变形，相当于定义一个函数类型，注意区分它与第二种方法的不同</p>
+<h1 id="函数指针的定义方法">函数指针的定义方法</h1><p>第一种是普通方法，没有使用typedef</p>
+<p>第二种是最常见写法，使用typedef，可以简化写法</p>
+<p>第三种是第二种方法的变形，相当于定义一个函数类型，注意区分它与第二种方法的不同</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(*PFUN)</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(FUN)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CallBack1</span><span class="params">(PFUN pFun)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    pFun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CallBack2</span><span class="params">(FUN *pFun)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    pFun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world"</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// （1）函数指针的定义</span></span><br><span class="line">    <span class="keyword">void</span>(*FF)();</span><br><span class="line"></span><br><span class="line">    FF = Print;</span><br><span class="line"></span><br><span class="line">    FF();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// （2）最常见的写法</span></span><br><span class="line">    CallBack1(Print);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// （3）另外一种写法</span></span><br><span class="line">    CallBack2(Print);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最终输出三个“Hello world”</p>
 ]]></content>
