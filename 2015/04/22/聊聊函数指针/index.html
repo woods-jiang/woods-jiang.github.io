@@ -4,31 +4,31 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>K-fold交叉验证 | Woods Jiang</title>
+    <title>聊聊函数指针 | Woods Jiang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Woods Jiang">
     
 
     
-    <meta name="description" content="适用情况假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。
-具体过程一、将数据集分为训练集Train和测试集Test。
-二、再将训练集Train分成K份，做交叉验证
-   (1) 现在从模型$M_{1}$开始，将数据分成K份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一">
+    <meta name="description" content="函数指针函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。
+C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。
+函数指针有两个用途：调用函数和做函数的参数。
+三种函数指针第一种是普通方法，没有使用typedef第二种是最常见写法，使用typedef，可以简化写法第三种是第二种方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="K-fold交叉验证">
-<meta property="og:url" content="http://woodsjiang.com/2015/04/07/K-fold交叉验证/index.html">
+<meta property="og:title" content="聊聊函数指针">
+<meta property="og:url" content="http://woodsjiang.com/2015/04/22/聊聊函数指针/index.html">
 <meta property="og:site_name" content="Woods Jiang">
-<meta property="og:description" content="适用情况假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。
-具体过程一、将数据集分为训练集Train和测试集Test。
-二、再将训练集Train分成K份，做交叉验证
-   (1) 现在从模型$M_{1}$开始，将数据分成K份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一">
+<meta property="og:description" content="函数指针函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。
+C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。
+函数指针有两个用途：调用函数和做函数的参数。
+三种函数指针第一种是普通方法，没有使用typedef第二种是最常见写法，使用typedef，可以简化写法第三种是第二种方">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K-fold交叉验证">
-<meta name="twitter:description" content="适用情况假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。
-具体过程一、将数据集分为训练集Train和测试集Test。
-二、再将训练集Train分成K份，做交叉验证
-   (1) 现在从模型$M_{1}$开始，将数据分成K份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一">
+<meta name="twitter:title" content="聊聊函数指针">
+<meta name="twitter:description" content="函数指针函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。
+C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。
+函数指针有两个用途：调用函数和做函数的参数。
+三种函数指针第一种是普通方法，没有使用typedef第二种是最常见写法，使用typedef，可以简化写法第三种是第二种方">
 
     
     <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
@@ -87,14 +87,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/07/K-fold交叉验证/" title="K-fold交叉验证" itemprop="url">K-fold交叉验证</a>
+      <a href="/2015/04/22/聊聊函数指针/" title="聊聊函数指针" itemprop="url">聊聊函数指针</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-07T03:16:27.000Z" itemprop="datePublished"> 发表于 2015-04-07</time>
+    <time datetime="2015-04-22T08:28:01.000Z" itemprop="datePublished"> 发表于 2015-04-22</time>
     
   </p>
 </header>
@@ -103,17 +103,16 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#适用情况"><span class="toc-number">1.</span> <span class="toc-text">适用情况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具体过程"><span class="toc-number">2.</span> <span class="toc-text">具体过程</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数指针"><span class="toc-number">1.</span> <span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三种函数指针"><span class="toc-number">2.</span> <span class="toc-text">三种函数指针</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
-<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测试集Test。</p>
-<p>二、再将训练集Train分成<code>K</code>份，做交叉验证</p>
-<p>   (1) 现在从模型$M_{1}$开始，将数据分成<code>K</code>份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一个不同的测试集，剩下的9份作为训练集，直到10份数据每一分都做过一次测试集为止，这时，我们得到10个评分，将这10个评分取平均值，得到模型M1的评分$f_1$。</p>
-<p>   (2) 现在开始对模型$M_2$做评分，跟上面采用一样的验证方法，最终得到评分$f_2$</p>
-<p>   (3) m个模型，一共得到了m个评分，最终取效果最好的那个模型$M_i$。</p>
-<p>三、使用这个评分最好的模型$M_i$的参数，对所有的训练集Train再训练一次。最终数据就训练好了，然后在最开始划分的测试数据集Test上进行测试。</p>
+		<h1 id="函数指针">函数指针</h1><p>函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。</p>
+<p>C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。</p>
+<p>函数指针有两个用途：调用函数和做函数的参数。</p>
+<h1 id="三种函数指针">三种函数指针</h1><p>第一种是普通方法，没有使用typedef<br>第二种是最常见写法，使用typedef，可以简化写法<br>第三种是第二种方法的变形，相当于定义一个函数类型，注意区分它与第二种方法的不同</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(*PFUN)</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(FUN)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CallBack1</span><span class="params">(PFUN pFun)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    pFun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CallBack2</span><span class="params">(FUN *pFun)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    pFun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world"</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// （1）函数指针的定义</span></span><br><span class="line">    <span class="keyword">void</span>(*FF)();</span><br><span class="line"></span><br><span class="line">    FF = Print;</span><br><span class="line"></span><br><span class="line">    FF();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// （2）最常见的写法</span></span><br><span class="line">    CallBack1(Print);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// （3）另外一种写法</span></span><br><span class="line">    CallBack2(Print);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终输出三个“Hello world”</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,13 +120,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  <a class="article-category-link" href="/categories/C-C/">C/C++</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Machine-Learning/">Machine Learning</a>
+  <span></span> <a href="/tags/C-C/">C/C++</a>
   </div>
 
 </div>
@@ -136,7 +135,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://woodsjiang.com/2015/04/07/K-fold交叉验证/" data-title="K-fold交叉验证 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  <div data-url="http://woodsjiang.com/2015/04/22/聊聊函数指针/" data-title="聊聊函数指针 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -149,19 +148,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/09/找出词典中所有的变位词/" title="找出词典中所有的变位词">
-  <strong>上一篇：</strong><br/>
-  <span>
-  找出词典中所有的变位词</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/07/在matlab中添加livsvm及其使用介绍/"  title="在matlab中添加livsvm及其使用介绍">
+<a href="/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/"  title="[leetcode]Find Minimum in Rotated Sorted Array">
  <strong>下一篇：</strong><br/> 
- <span>在matlab中添加livsvm及其使用介绍
+ <span>[leetcode]Find Minimum in Rotated Sorted Array
 </span>
 </a>
 </div>
@@ -195,7 +186,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#适用情况"><span class="toc-number">1.</span> <span class="toc-text">适用情况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具体过程"><span class="toc-number">2.</span> <span class="toc-text">具体过程</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数指针"><span class="toc-number">1.</span> <span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三种函数指针"><span class="toc-number">2.</span> <span class="toc-text">三种函数指针</span></a></li></ol>
  
   </div>
 
