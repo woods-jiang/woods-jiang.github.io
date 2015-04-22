@@ -4,31 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>K-fold交叉验证 | Woods Jiang</title>
+    <title>[leetcode]Happy Number | Woods Jiang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Woods Jiang">
     
 
     
-    <meta name="description" content="适用情况假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。
-具体过程一、将数据集分为训练集Train和测试集Test。
-二、再将训练集Train分成K份，做交叉验证
-   (1) 现在从模型$M_{1}$开始，将数据分成K份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一">
+    <meta name="description" content="题目Write an algorithm to determine if a number is “happy”.
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares">
 <meta property="og:type" content="article">
-<meta property="og:title" content="K-fold交叉验证">
-<meta property="og:url" content="http://woodsjiang.com/2015/04/07/K-fold交叉验证/index.html">
+<meta property="og:title" content="[leetcode]Happy Number">
+<meta property="og:url" content="http://woodsjiang.com/2015/04/22/leetcode-Happy-Number/index.html">
 <meta property="og:site_name" content="Woods Jiang">
-<meta property="og:description" content="适用情况假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。
-具体过程一、将数据集分为训练集Train和测试集Test。
-二、再将训练集Train分成K份，做交叉验证
-   (1) 现在从模型$M_{1}$开始，将数据分成K份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一">
+<meta property="og:description" content="题目Write an algorithm to determine if a number is “happy”.
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K-fold交叉验证">
-<meta name="twitter:description" content="适用情况假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。
-具体过程一、将数据集分为训练集Train和测试集Test。
-二、再将训练集Train分成K份，做交叉验证
-   (1) 现在从模型$M_{1}$开始，将数据分成K份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一">
+<meta name="twitter:title" content="[leetcode]Happy Number">
+<meta name="twitter:description" content="题目Write an algorithm to determine if a number is “happy”.
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares">
 
     
     <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
@@ -87,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/07/K-fold交叉验证/" title="K-fold交叉验证" itemprop="url">K-fold交叉验证</a>
+      <a href="/2015/04/22/leetcode-Happy-Number/" title="[leetcode]Happy Number" itemprop="url">[leetcode]Happy Number</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-07T03:16:27.000Z" itemprop="datePublished"> 发表于 2015-04-07</time>
+    <time datetime="2015-04-22T14:10:06.000Z" itemprop="datePublished"> 发表于 2015-04-22</time>
     
   </p>
 </header>
@@ -103,31 +97,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#适用情况"><span class="toc-number">1.</span> <span class="toc-text">适用情况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具体过程"><span class="toc-number">2.</span> <span class="toc-text">具体过程</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
-<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测试集Test。</p>
-<p>二、再将训练集Train分成<code>K</code>份，做交叉验证</p>
-<p>   (1) 现在从模型$M_{1}$开始，将数据分成<code>K</code>份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一个不同的测试集，剩下的9份作为训练集，直到10份数据每一分都做过一次测试集为止，这时，我们得到10个评分，将这10个评分取平均值，得到模型M1的评分$f_1$。</p>
-<p>   (2) 现在开始对模型$M_2$做评分，跟上面采用一样的验证方法，最终得到评分$f_2$</p>
-<p>   (3) m个模型，一共得到了m个评分，最终取效果最好的那个模型$M_i$。</p>
-<p>三、使用这个评分最好的模型$M_i$的参数，对所有的训练集Train再训练一次。最终数据就训练好了，然后在最开始划分的测试数据集Test上进行测试。</p>
-  
+		<h1 id="题目">题目</h1><p>Write an algorithm to determine if a number is “happy”.</p>
+<p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
+<p>$Example:$ 19 is a happy number</p>
+<p>$1^2$ + $9^2$ = 82<br>$8^2$ + $2^2$ = 68<br>$6^2$ + $8^2$ = 100<br>$1^2$ + $0^2$ + $0^2$ = 1</p>
+<h1 id="思路">思路</h1><p>如果一个数不是Happy Number的话，那么它在做上述的操作过程中，一定会出现循环，即出现一个数，这个数在以前出现过。</p>
+<p>所以只需要用一个set来记住以前出现过的结果，当再次出现时，即判定该数不是Happy Number，这里我们使用的是C++11里面的unordered_map。</p>
+<pre><code><span class="escape">`另</span>外<span class="escape">`如</span>果不用上面的方法，而控制迭代次数也是可以AC的，比如我试过，只迭代<span class="number">10</span>，如果该数还未等于<span class="number">1</span>，则<span class="keyword">return</span> <span class="literal">false</span>，也可以AC，但是这样子做是有风险的，毕竟可能存在某数需要迭代很多次才能够得到最终的结果。
+</code></pre><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="stl_container"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt;</span> isAppear;</span><br><span class="line">        </span><br><span class="line">        isAppear.insert(n);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> sum = n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span> != sum)</span><br><span class="line">        &#123;</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(n != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += <span class="built_in">pow</span>(n%<span class="number">10</span>,<span class="number">2</span>);</span><br><span class="line">                n = n/<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(isAppear.find(sum)!=isAppear.end())</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                </span><br><span class="line">            isAppear.insert(sum);</span><br><span class="line">            n = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Machine-Learning/">Machine Learning</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
   </div>
 
 </div>
@@ -136,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://woodsjiang.com/2015/04/07/K-fold交叉验证/" data-title="K-fold交叉验证 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  <div data-url="http://woodsjiang.com/2015/04/22/leetcode-Happy-Number/" data-title="[leetcode]Happy Number | Woods Jiang" data-tsina="5059000554" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -149,19 +143,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/09/找出词典中所有的变位词/" title="找出词典中所有的变位词">
-  <strong>上一篇：</strong><br/>
-  <span>
-  找出词典中所有的变位词</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/07/在matlab中添加livsvm及其使用介绍/"  title="在matlab中添加livsvm及其使用介绍">
+<a href="/2015/04/22/函数指针的定义方法/"  title="函数指针的定义方法">
  <strong>下一篇：</strong><br/> 
- <span>在matlab中添加livsvm及其使用介绍
+ <span>函数指针的定义方法
 </span>
 </a>
 </div>
@@ -195,7 +181,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#适用情况"><span class="toc-number">1.</span> <span class="toc-text">适用情况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具体过程"><span class="toc-number">2.</span> <span class="toc-text">具体过程</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li></ol>
  
   </div>
 
