@@ -80,6 +80,80 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/09/C++单例模式/" title="C++单例模式" itemprop="url">C++单例模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-09T14:59:03.000Z" itemprop="datePublished"> 发表于 2015-04-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="单例模式定义">单例模式定义</h1><p>单例模式是设计模式的一种，即只能产生一个对象的类</p>
+<h1 id="懒汉模式">懒汉模式</h1><p>所谓懒汉模式即第一次调用的时候才产生对象。这需要用锁才能够保证线程安全，但是如果处理大量数据时，性能不好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> CSingleton* getInstance()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (NULL == m_instance)</span><br><span class="line">        &#123;</span><br><span class="line">            Lock();</span><br><span class="line">            <span class="keyword">if</span> (NULL == m_instance)</span><br><span class="line">            &#123;</span><br><span class="line">                m_instance = <span class="keyword">new</span> CSingleton;</span><br><span class="line">            &#125;</span><br><span class="line">            UnLock();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> m_instance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> CSingleton* m_instance;</span><br><span class="line">    CSingleton()&#123;&#125;</span><br><span class="line">    CSingleton(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">    CSingleton &amp;<span class="keyword">operator</span> =(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">&#125;;</span><br><span class="line">CSingleton* CSingleton::m_instance = NULL;</span><br></pre></td></tr></table></figure>
+<p><code>注意</code>，这里的普通构造函数、拷贝构造函数还有重载的操作符“=”都是私有的。而且拷贝构造函数和重载的“=”都不需要实现，这样的好处是即使是在友元类中也无法使用。</p>
+<p>上面代码也并不完美，new出来的空间还没有被回收呢，我们都知道，在程序结束时，系统会自动析构所有的全局对象，系统也会自动析构所有类的静态成员变量，利用这个特征，我们在类里面加入一个类CGarbageCollector，在该类中定义一个静态成员变量，在其析构函数中释放单例模式中new出来的空间。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> CSingleton* getInstance()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_pInstance == NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            m_pInstance = <span class="keyword">new</span> CSingleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> m_pInstance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    CSingleton()&#123;&#125;</span><br><span class="line">    CSingleton(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">    CSingleton &amp;<span class="keyword">operator</span> =(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">    <span class="keyword">static</span> CSingleton* m_pInstance;</span><br><span class="line">    <span class="keyword">class</span> CGarbageCollector</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        ~CGarbageCollector()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (CSingleton::m_pInstance)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">delete</span> CSingleton::m_pInstance;</span><br><span class="line">                CSingleton::m_pInstance = NULL;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">static</span> CGarbageCollector Garb;</span><br><span class="line">&#125;;</span><br><span class="line">CSingleton* CSingleton::m_pInstance = NULL;</span><br></pre></td></tr></table></figure>
+<p>更加简洁的懒汉模式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> CSingleton&amp; getInstance()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">static</span> CSingleton instance;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    CSingleton()&#123;&#125;</span><br><span class="line">    CSingleton(<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">    CSingleton&amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> CSingleton&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里巧妙的运用了静态变量，而且还不需要考虑销毁的问题，不过要非常<code>注意</code>的是，这里在C++0x及其以后的标准中才是线程安全的。</p>
+<h1 id="饿汉模式">饿汉模式</h1><p>为什么叫做饿汉模式呢？这是相对于懒汉模式来说的，因为类的静态成员变量在执行主函数之前就初始化了的，也就是说，这个单例对象在主函数执行前就创建了，想饿汉一样，看见东西先吃了再说，这里就是不管三七二十一，不管用不用得上，先创建一个对象再说。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CSingleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> CSingleton* getInstance()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> m_pInstance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> CSingleton* m_pInstance;</span><br><span class="line">    CSingleton()&#123;&#125;</span><br><span class="line">    CSingleton(<span class="keyword">const</span> CSingleton &amp;);</span><br><span class="line">    CSingleton &amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> CSingleton &amp;);</span><br><span class="line">    <span class="keyword">class</span> CGarbageCollector</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        ~CGarbageCollector()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (CSingleton::m_pInstance)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">delete</span> CSingleton::m_pInstance;</span><br><span class="line">                CSingleton::m_pInstance = NULL;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">static</span> CGarbageCollector Garb;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CSingleton* CSingleton::m_pInstance = <span class="keyword">new</span> CSingleton;</span><br></pre></td></tr></table></figure>
+<p>同样，采用了跟上面一样的方法来释放内存。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C/">C++</a><a href="/tags/设计模式/">设计模式</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/09/C++单例模式/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/09/找出词典中所有的变位词/" title="找出词典中所有的变位词" itemprop="url">找出词典中所有的变位词</a>
   </h1>
   <p class="article-author">By
@@ -529,7 +603,7 @@ sunny <span class="number">2</span>
 		  
 		
 		  
-			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>8</sup></a></li>
+			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -542,11 +616,11 @@ sunny <span class="number">2</span>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>8</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>9</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>3</sup></a></li>
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>4</sup></a></li>
 			
 		
 			
