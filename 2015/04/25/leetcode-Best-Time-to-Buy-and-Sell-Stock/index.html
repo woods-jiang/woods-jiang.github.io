@@ -4,37 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>函数指针的定义方法 | Woods Jiang</title>
+    <title>[leetcode]Best Time to Buy and Sell Stock | Woods Jiang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Woods Jiang">
     
 
     
-    <meta name="description" content="函数指针函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。
-C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。
-函数指针有两个用途：调用函数和做函数的参数。
-函数指针的定义方法第一种是普通方法，没有使用typedef
-第二种是最常见写法，使用typedef，可以简化写法
-第三种">
+    <meta name="description" content="题目Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="函数指针的定义方法">
-<meta property="og:url" content="http://woodsjiang.com/2015/04/22/函数指针的定义方法/index.html">
+<meta property="og:title" content="[leetcode]Best Time to Buy and Sell Stock">
+<meta property="og:url" content="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/index.html">
 <meta property="og:site_name" content="Woods Jiang">
-<meta property="og:description" content="函数指针函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。
-C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。
-函数指针有两个用途：调用函数和做函数的参数。
-函数指针的定义方法第一种是普通方法，没有使用typedef
-第二种是最常见写法，使用typedef，可以简化写法
-第三种">
+<meta property="og:description" content="题目Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the s">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="函数指针的定义方法">
-<meta name="twitter:description" content="函数指针函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。
-C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。
-函数指针有两个用途：调用函数和做函数的参数。
-函数指针的定义方法第一种是普通方法，没有使用typedef
-第二种是最常见写法，使用typedef，可以简化写法
-第三种">
+<meta name="twitter:title" content="[leetcode]Best Time to Buy and Sell Stock">
+<meta name="twitter:description" content="题目Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the s">
 
     
     <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
@@ -93,14 +81,14 @@ C在编译时，每一个函数都有一个入口地址，该入口地址就是�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/22/函数指针的定义方法/" title="函数指针的定义方法" itemprop="url">函数指针的定义方法</a>
+      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" title="[leetcode]Best Time to Buy and Sell Stock" itemprop="url">[leetcode]Best Time to Buy and Sell Stock</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-22T08:28:01.000Z" itemprop="datePublished"> 发表于 2015-04-22</time>
+    <time datetime="2015-04-25T02:28:20.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
     
   </p>
 </header>
@@ -109,18 +97,15 @@ C在编译时，每一个函数都有一个入口地址，该入口地址就是�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数指针"><span class="toc-number">1.</span> <span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数指针的定义方法"><span class="toc-number">2.</span> <span class="toc-text">函数指针的定义方法</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-number">4.</span> <span class="toc-text">分析</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="函数指针">函数指针</h1><p>函数指针是指向函数的指针变量。 因而“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。</p>
-<p>C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数。</p>
-<p>函数指针有两个用途：调用函数和做函数的参数。</p>
-<h1 id="函数指针的定义方法">函数指针的定义方法</h1><p>第一种是普通方法，没有使用typedef</p>
-<p>第二种是最常见写法，使用typedef，可以简化写法</p>
-<p>第三种是第二种方法的变形，相当于定义一个函数类型，然后使用这个类型后面加上<code>*</code>表示它是一个指针，就相当于是多了一种变量类型，跟<code>int</code>和<code>char</code>定义指针变量类似，注意体会它与第二种方法的不同</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(*PFUN)</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(FUN)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CallBack1</span><span class="params">(PFUN pFun)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    pFun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CallBack2</span><span class="params">(FUN *pFun)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    pFun();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world"</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// （1）函数指针的定义</span></span><br><span class="line">    <span class="keyword">void</span>(*FF)();</span><br><span class="line"></span><br><span class="line">    FF = Print;</span><br><span class="line"></span><br><span class="line">    FF();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// （2）最常见的写法</span></span><br><span class="line">    CallBack1(Print);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// （3）另外一种写法</span></span><br><span class="line">    CallBack2(Print);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最终输出三个“Hello world”</p>
+		<h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
+<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<h1 id="思路">思路</h1><p>采用动态规划的思想，使用minPrice保存已经扫描到的最小值，如果当前价格-minPrice大于profit，即存在更大利益，更新profit的值。整个思路都比较简单</p>
+<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> minPrice = INT_MAX, profit = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(prices[i] - minPrice &gt; profit)</span></span><br><span class="line">            </span>&#123;</span><br><span class="line">                profit = prices[i] - minPrice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="分析">分析</h1><p>时间复杂度$O(n)$，空间复杂度为$O(1)$</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -128,13 +113,13 @@ C在编译时，每一个函数都有一个入口地址，该入口地址就是�
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-C/">C/C++</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/动态规划/">动态规划</a>
   </div>
 
 </div>
@@ -143,7 +128,7 @@ C在编译时，每一个函数都有一个入口地址，该入口地址就是�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://woodsjiang.com/2015/04/22/函数指针的定义方法/" data-title="函数指针的定义方法 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  <div data-url="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" data-title="[leetcode]Best Time to Buy and Sell Stock | Woods Jiang" data-tsina="5059000554" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,19 +141,11 @@ C在编译时，每一个函数都有一个入口地址，该入口地址就是�
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/22/leetcode-Happy-Number/" title="[leetcode]Happy Number">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [leetcode]Happy Number</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/"  title="[leetcode]Find Minimum in Rotated Sorted Array">
+<a href="/2015/04/24/leetcode-Search-For-A-Range/"  title="[leetcode]Search For A Range">
  <strong>下一篇：</strong><br/> 
- <span>[leetcode]Find Minimum in Rotated Sorted Array
+ <span>[leetcode]Search For A Range
 </span>
 </a>
 </div>
@@ -202,7 +179,7 @@ C在编译时，每一个函数都有一个入口地址，该入口地址就是�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数指针"><span class="toc-number">1.</span> <span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数指针的定义方法"><span class="toc-number">2.</span> <span class="toc-text">函数指针的定义方法</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-number">4.</span> <span class="toc-text">分析</span></a></li></ol>
  
   </div>
 
