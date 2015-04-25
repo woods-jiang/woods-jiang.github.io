@@ -80,6 +80,74 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/09/找出词典中所有的变位词/" title="找出词典中所有的变位词" itemprop="url">找出词典中所有的变位词</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-09T11:34:04.000Z" itemprop="datePublished"> 发表于 2015-04-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="什么是变位词">什么是变位词</h1><p>两个词语所有的字母个数相同，但是字母顺序不一样的词语，成他们互为对方的变位词</p>
+<h1 id="问题描述">问题描述</h1><p>给定一本词典，找出词典中的所有变位词</p>
+<h1 id="解决思路">解决思路</h1><p>设置一个map来存储变位词，key是每个单词排列好的数序，value是一个存放string的set，用来存放所有的变位词。</p>
+<pre><code>依次扫描每一个单词，并且排序
+将排序好的单词作为<span class="variable">key</span>存放在<span class="built_in">map</span>中，而单词本身存放在value的<span class="built_in">set</span>容器中。
+遍历输出<span class="built_in">map</span>，得到变位词表
+</code></pre><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;fstream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;map&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;set&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;algorithm&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">charcomp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> x, <span class="keyword">const</span> <span class="keyword">char</span> y)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  x &lt; y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输入文件名字</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">anagramme</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; filename)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="function">ifstream <span class="title">ifs</span><span class="params">(filename)</span></span>;</span><br><span class="line">    <span class="function">ofstream <span class="title">ofs</span><span class="params">("output.txt")</span></span>;</span><br><span class="line">    <span class="built_in">string</span> word;</span><br><span class="line">    <span class="stl_container"><span class="built_in">map</span> &lt; <span class="built_in">string</span>, <span class="stl_container"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span> wordmap;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取词典</span></span><br><span class="line">    <span class="keyword">while</span> (ifs &gt;&gt; word)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> strTmp = word;</span><br><span class="line">        sort(word.begin(), word.end(), charcomp);</span><br><span class="line">        wordmap[word].insert(strTmp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历输出</span></span><br><span class="line">    <span class="stl_container"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="stl_container"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span>::iterator mapIt = wordmap.begin();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (; mapIt != wordmap.end(); ++mapIt)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="stl_container"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;</span>::iterator setIt = (mapIt-&gt;second).begin();</span><br><span class="line">        <span class="keyword">for</span> (; setIt != (mapIt-&gt;second).end(); ++setIt)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; *setIt &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">            ofs &lt;&lt; *setIt &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">        ofs &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ifs.close();</span><br><span class="line">    ofs.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    anagramme(<span class="string">"dict.txt"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Algorithm/">Algorithm</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/09/找出词典中所有的变位词/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/07/K-fold交叉验证/" title="K-fold交叉验证" itemprop="url">K-fold交叉验证</a>
   </h1>
   <p class="article-author">By
@@ -461,7 +529,7 @@ sunny <span class="number">2</span>
 		  
 		
 		  
-			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>7</sup></a></li>
+			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>8</sup></a></li>
 		  
 		
 		</ul>
@@ -474,15 +542,15 @@ sunny <span class="number">2</span>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>7</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>3</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
 			
 		
 			
