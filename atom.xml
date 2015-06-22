@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Talk less. Think more. Do more than more.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-06-22T01:02:42.978Z</updated>
+  <updated>2015-06-22T13:46:08.147Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -13,6 +13,23 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[python(x,y)的一个bug]]></title>
+    <link href="http://woodsjiang.com/2015/06/22/python-x-y%E7%9A%84%E4%B8%80%E4%B8%AAbug/"/>
+    <id>http://woodsjiang.com/2015/06/22/python-x-y的一个bug/</id>
+    <published>2015-06-22T13:31:07.000Z</published>
+    <updated>2015-06-22T13:46:08.147Z</updated>
+    <content type="html"><![CDATA[<p>初学python，使用的python(x,y)，里面自带的一个IDE<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/python(x,y)的一个bug.png" alt="1"></p>
+<p>然后在意程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才艺发现，x全是0，因为python里面默认是int型啦。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>初学python，使用的python(x,y)，里面自带的一个IDE<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/]]>
+    </summary>
+    
+      <category term="python" scheme="http://woodsjiang.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[《当幸福来敲门》观后感]]></title>
@@ -546,41 +563,6 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
       <category term="STL" scheme="http://woodsjiang.com/tags/STL/"/>
     
       <category term="STL" scheme="http://woodsjiang.com/categories/STL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[[leetcode][bash]Word Frequency]]></title>
-    <link href="http://woodsjiang.com/2015/04/04/leetcode-bash-Word-Frequency/"/>
-    <id>http://woodsjiang.com/2015/04/04/leetcode-bash-Word-Frequency/</id>
-    <published>2015-04-04T06:51:49.000Z</published>
-    <updated>2015-04-11T12:53:08.289Z</updated>
-    <content type="html"><![CDATA[<h1 id="题目">题目</h1><p>来源：<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="external">https://leetcode.com/problems/word-frequency/</a><br>Write a bash script to calculate the frequency of each word in a text file <code>words.txt</code>.</p>
-<p>For simplicity sake, you may assume:</p>
-<ul>
-<li><code>words.txt</code> contains only lowercase characters and space <code>&#39; &#39;</code> characters.</li>
-<li>Each word must consist of lowercase characters only.</li>
-<li>Words are separated by one or more whitespace characters.</li>
-</ul>
-<p>For example, assume that <code>words.txt</code> has the following content:</p>
-<pre><code><span class="keyword">the</span> <span class="property">day</span> <span class="keyword">is</span> sunny <span class="keyword">the</span> <span class="keyword">the</span>
-<span class="keyword">the</span> sunny <span class="keyword">is</span> <span class="keyword">is</span>
-</code></pre><p>Your script should output the following, sorted by descending frequency:</p>
-<pre><code><span class="keyword">the</span> <span class="number">4</span>
-<span class="keyword">is</span> <span class="number">3</span>
-sunny <span class="number">2</span>
-<span class="property">day</span> <span class="number">1</span>
-</code></pre><p><strong>Note:</strong><br>Don’t worry about handling ties, it is guaranteed that each word’s frequency count is unique.</p>
-<h1 id="Bash脚本">Bash脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat words.txt | tr <span class="operator">-s</span> <span class="string">' '</span> <span class="string">'\n'</span>|sort|uniq -c|sort -rn| awk <span class="string">'&#123;print $2" "$1&#125;'</span></span><br></pre></td></tr></table></figure>
-<p>解释：<br>tr -s：使用指定字符串替换出现一次或者连续出现多次的字符串，这里就是将一个或者多个空格换成换行符<br>sort：将单词从小到大排序<br>uniq -c：uniq用来去掉连续出现的单词<br>sort -rn：sort默认是升序排列，-r则表示降序，-n则是按照数值大小排序<br>awk ‘{print$2” “$1}’：则是格式化输出，内容的每一行为<code>“ ”</code>中的内容</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="题目">题目</h1><p>来源：<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="external">https://leetcode.com/problem]]>
-    </summary>
-    
-      <category term="leetcode" scheme="http://woodsjiang.com/tags/leetcode/"/>
-    
-      <category term="leetcode" scheme="http://woodsjiang.com/categories/leetcode/"/>
     
   </entry>
   

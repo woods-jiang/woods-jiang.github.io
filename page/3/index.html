@@ -80,6 +80,86 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/04/leetcode-bash-Word-Frequency/" title="[leetcode][bash]Word Frequency" itemprop="url">[leetcode][bash]Word Frequency</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-04T06:51:49.000Z" itemprop="datePublished"> 发表于 2015-04-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目">题目</h1><p>来源：<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="external">https://leetcode.com/problems/word-frequency/</a><br>Write a bash script to calculate the frequency of each word in a text file <code>words.txt</code>.</p>
+<p>For simplicity sake, you may assume:</p>
+<ul>
+<li><code>words.txt</code> contains only lowercase characters and space <code>&#39; &#39;</code> characters.</li>
+<li>Each word must consist of lowercase characters only.</li>
+<li>Words are separated by one or more whitespace characters.</li>
+</ul>
+<p>For example, assume that <code>words.txt</code> has the following content:</p>
+<pre><code><span class="keyword">the</span> <span class="property">day</span> <span class="keyword">is</span> sunny <span class="keyword">the</span> <span class="keyword">the</span>
+<span class="keyword">the</span> sunny <span class="keyword">is</span> <span class="keyword">is</span>
+</code></pre><p>Your script should output the following, sorted by descending frequency:</p>
+<pre><code><span class="keyword">the</span> <span class="number">4</span>
+<span class="keyword">is</span> <span class="number">3</span>
+sunny <span class="number">2</span>
+<span class="property">day</span> <span class="number">1</span>
+</code></pre><p><strong>Note:</strong><br>Don’t worry about handling ties, it is guaranteed that each word’s frequency count is unique.</p>
+<h1 id="Bash脚本">Bash脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat words.txt | tr <span class="operator">-s</span> <span class="string">' '</span> <span class="string">'\n'</span>|sort|uniq -c|sort -rn| awk <span class="string">'&#123;print $2" "$1&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>解释：<br>tr -s：使用指定字符串替换出现一次或者连续出现多次的字符串，这里就是将一个或者多个空格换成换行符<br>sort：将单词从小到大排序<br>uniq -c：uniq用来去掉连续出现的单词<br>sort -rn：sort默认是升序排列，-r则表示降序，-n则是按照数值大小排序<br>awk ‘{print$2” “$1}’：则是格式化输出，内容的每一行为<code>“ ”</code>中的内容</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/04/leetcode-bash-Word-Frequency/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/03/31/hello-world/" title="Hello World" itemprop="url">Hello World</a>
   </h1>
   <p class="article-author">By
@@ -210,11 +290,11 @@
 			
 		
 			
-				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
+				<li><a href="/tags/分治/" title="分治">分治<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/分治/" title="分治">分治<sup>2</sup></a></li>
+				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
 			
 		
 			
@@ -226,7 +306,11 @@
 			
 		
 			
-				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
 			
 		
 			
@@ -234,7 +318,7 @@
 			
 		
 			
-				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
+				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
 			
 		
 			
@@ -246,7 +330,7 @@
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 		</ul>

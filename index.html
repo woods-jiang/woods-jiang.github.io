@@ -80,6 +80,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/06/22/python-x-y的一个bug/" title="python(x,y)的一个bug" itemprop="url">python(x,y)的一个bug</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-22T13:31:07.000Z" itemprop="datePublished"> 发表于 2015-06-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>初学python，使用的python(x,y)，里面自带的一个IDE<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/python(x,y)的一个bug.png" alt="1"></p>
+<p>然后在意程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才艺发现，x全是0，因为python里面默认是int型啦。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/06/22/python-x-y的一个bug/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/06/22/《当幸福来敲门》观后感/" title="《当幸福来敲门》观后感" itemprop="url">《当幸福来敲门》观后感</a>
   </h1>
   <p class="article-author">By
@@ -716,75 +775,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/22/leetcode-Happy-Number/" title="[leetcode]Happy Number" itemprop="url">[leetcode]Happy Number</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-22T14:10:06.000Z" itemprop="datePublished"> 发表于 2015-04-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><p>Write an algorithm to determine if a number is “happy”.</p>
-<p>A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.</p>
-<p>$Example:$ 19 is a happy number</p>
-<p>$1^2$ + $9^2$ = 82<br>$8^2$ + $2^2$ = 68<br>$6^2$ + $8^2$ = 100<br>$1^2$ + $0^2$ + $0^2$ = 1</p>
-<h1 id="思路">思路</h1><p>如果一个数不是Happy Number的话，那么它在做上述的操作过程中，一定会出现循环，即出现一个数，这个数在以前出现过。</p>
-<p>所以只需要用一个set来记住以前出现过的结果，当再次出现时，即判定该数不是Happy Number，这里我们使用的是C++11里面的unordered_map。</p>
-<pre><code><span class="escape">`另</span>外<span class="escape">`如</span>果不用上面的方法，而控制迭代次数也是可以AC的，比如我试过，只迭代<span class="number">10</span>，如果该数还未等于<span class="number">1</span>，则<span class="keyword">return</span> <span class="literal">false</span>，也可以AC，但是这样子做是有风险的，毕竟可能存在某数需要迭代很多次才能够得到最终的结果。
-</code></pre><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="stl_container"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt;</span> isAppear;</span><br><span class="line">        </span><br><span class="line">        isAppear.insert(n);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> sum = n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span> != sum)</span><br><span class="line">        &#123;</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(n != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += <span class="built_in">pow</span>(n%<span class="number">10</span>,<span class="number">2</span>);</span><br><span class="line">                n = n/<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(isAppear.find(sum)!=isAppear.end())</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                </span><br><span class="line">            isAppear.insert(sum);</span><br><span class="line">            n = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/leetcode/">leetcode</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/22/leetcode-Happy-Number/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -860,11 +850,11 @@
 			
 		
 			
-				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
+				<li><a href="/tags/分治/" title="分治">分治<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/分治/" title="分治">分治<sup>2</sup></a></li>
+				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
 			
 		
 			
@@ -876,7 +866,11 @@
 			
 		
 			
-				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
 			
 		
 			
@@ -884,7 +878,7 @@
 			
 		
 			
-				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
+				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
 			
 		
 			
@@ -896,7 +890,7 @@
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 		</ul>
