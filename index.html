@@ -94,7 +94,7 @@
     <div class="article-content">
         
         <p>初学python，使用的python(x,y)，里面自带的一个<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/python(x,y)的一个bug.png" alt="1"></p>
-<p>然后在程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才艺发现，x全是0，因为python里面默认是int型啦。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
+<p>然后在程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才发现，x全是0，因为python里面如果是整数除以整数，默认是不会给你转换成double的（C++以及其他很多语言都是这样子，matlab似乎全都看成double的）。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
 
         
         

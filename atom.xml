@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Talk less. Think more. Do more than more.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-06-22T13:50:02.180Z</updated>
+  <updated>2015-06-23T02:16:19.896Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -19,9 +19,9 @@
     <link href="http://woodsjiang.com/2015/06/22/python-x-y%E7%9A%84%E4%B8%80%E4%B8%AAbug/"/>
     <id>http://woodsjiang.com/2015/06/22/python-x-y的一个bug/</id>
     <published>2015-06-22T13:31:07.000Z</published>
-    <updated>2015-06-22T13:50:02.180Z</updated>
+    <updated>2015-06-23T02:16:19.896Z</updated>
     <content type="html"><![CDATA[<p>初学python，使用的python(x,y)，里面自带的一个<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/python(x,y)的一个bug.png" alt="1"></p>
-<p>然后在程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才艺发现，x全是0，因为python里面默认是int型啦。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
+<p>然后在程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才发现，x全是0，因为python里面如果是整数除以整数，默认是不会给你转换成double的（C++以及其他很多语言都是这样子，matlab似乎全都看成double的）。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>初学python，使用的python(x,y)，里面自带的一个<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/pyt]]>
