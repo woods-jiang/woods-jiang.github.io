@@ -4,31 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[leetcode]Find Minimum in Rotated Sorted Array | Woods Jiang</title>
+    <title>U盘写保护且不能格式化的解决方案 | Woods Jiang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Woods Jiang">
     
 
     
-    <meta name="description" content="Suppose a sorted array is rotated at some pivot unknown to you beforehand.
-(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
-Find the minimum element.
-You may assume no duplicate exists in the array.">
+    <meta name="description" content="U盘写保护相当于只读也就是说修改内容但不能保存，是专门为u盘防病毒而设计的。
+有些U盘有一个可以拨动的键，直接可以控制写保护。
+但是有些U盘却没有这个键，但是仍然会遇到些保护的情况。而且通过网上的一些方法都很难解除写保护，比如说格式化（快速和非快速格式化都不行）。
+直到后来使用了DiskGenius，DiskGenius本来是一个磁盘分区和数据恢复的工具，这里就使用它将U盘重新建立分区，然后格式化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[leetcode]Find Minimum in Rotated Sorted Array">
-<meta property="og:url" content="http://woodsjiang.com/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/index.html">
+<meta property="og:title" content="U盘写保护且不能格式化的解决方案">
+<meta property="og:url" content="http://woodsjiang.com/2015/06/28/U盘写保护且不能格式化的解决方案/index.html">
 <meta property="og:site_name" content="Woods Jiang">
-<meta property="og:description" content="Suppose a sorted array is rotated at some pivot unknown to you beforehand.
-(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
-Find the minimum element.
-You may assume no duplicate exists in the array.">
+<meta property="og:description" content="U盘写保护相当于只读也就是说修改内容但不能保存，是专门为u盘防病毒而设计的。
+有些U盘有一个可以拨动的键，直接可以控制写保护。
+但是有些U盘却没有这个键，但是仍然会遇到些保护的情况。而且通过网上的一些方法都很难解除写保护，比如说格式化（快速和非快速格式化都不行）。
+直到后来使用了DiskGenius，DiskGenius本来是一个磁盘分区和数据恢复的工具，这里就使用它将U盘重新建立分区，然后格式化">
+<meta property="og:image" content="http://7xifo1.com1.z0.glb.clouddn.com/U盘写保护之后使用DiskGenius格式化问题解决了.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[leetcode]Find Minimum in Rotated Sorted Array">
-<meta name="twitter:description" content="Suppose a sorted array is rotated at some pivot unknown to you beforehand.
-(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
-Find the minimum element.
-You may assume no duplicate exists in the array.">
+<meta name="twitter:title" content="U盘写保护且不能格式化的解决方案">
+<meta name="twitter:description" content="U盘写保护相当于只读也就是说修改内容但不能保存，是专门为u盘防病毒而设计的。
+有些U盘有一个可以拨动的键，直接可以控制写保护。
+但是有些U盘却没有这个键，但是仍然会遇到些保护的情况。而且通过网上的一些方法都很难解除写保护，比如说格式化（快速和非快速格式化都不行）。
+直到后来使用了DiskGenius，DiskGenius本来是一个磁盘分区和数据恢复的工具，这里就使用它将U盘重新建立分区，然后格式化">
 
     
     <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
@@ -87,14 +88,14 @@ You may assume no duplicate exists in the array.">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/" title="[leetcode]Find Minimum in Rotated Sorted Array" itemprop="url">[leetcode]Find Minimum in Rotated Sorted Array</a>
+      <a href="/2015/06/28/U盘写保护且不能格式化的解决方案/" title="U盘写保护且不能格式化的解决方案" itemprop="url">U盘写保护且不能格式化的解决方案</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-20T14:19:41.000Z" itemprop="datePublished"> 发表于 2015-04-20</time>
+    <time datetime="2015-06-28T00:23:56.000Z" itemprop="datePublished"> 发表于 2015-06-28</time>
     
   </p>
 </header>
@@ -103,20 +104,15 @@ You may assume no duplicate exists in the array.">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数组中无重复元素"><span class="toc-number">1.</span> <span class="toc-text">数组中无重复元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组中有重复元素"><span class="toc-number">2.</span> <span class="toc-text">数组中有重复元素</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
-<p>Find the minimum element.</p>
-<p>You may assume no duplicate exists in the array.</p>
-<h1 id="数组中无重复元素">数组中无重复元素</h1><p>观察旋转数组特点，采用二分查找的思想，把查找时间按复杂度降低到O(log$n$)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.size()-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span>==end)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(nums[start] &gt;= nums[end])</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(end - start == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                mid = end;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (start+end)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nums[start] &lt; nums[mid])</span><br><span class="line">                start = mid;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(nums[mid] &lt; nums[end])</span></span><br><span class="line">                end </span>= mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[mid];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h1 id="数组中有重复元素">数组中有重复元素</h1><pre><code>Follow up <span class="keyword">for</span> <span class="string">"Find Minimum in Rotated Sorted Array"</span>:
-What <span class="keyword">if</span> duplicates are allowed?
-
-Would this affect <span class="keyword">the</span> <span class="command">run</span>-<span class="property">time</span> complexity? How <span class="keyword">and</span> why?
-</code></pre><p>当数组中存在重复元素时，比如<code>1 0 1 1 1</code>，上面的方法就会错过最小值0了。<br>如果出现这种极端情况时，就只能挨着一个一个找最小值了。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.size()-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span>==end)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(nums[start] &gt;= nums[end])</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(end - start == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                mid = end;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (start+end)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nums[start]==nums[mid]&amp;&amp;nums[mid]&amp;&amp;nums[end])</span><br><span class="line">                <span class="keyword">return</span> FindMinInOrder(nums);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(nums[start] &lt;= nums[mid])</span><br><span class="line">                start = mid;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(nums[mid] &lt;= nums[end])</span></span><br><span class="line">                end </span>= mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[mid];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">FindMinInOrder</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result=nums[<span class="number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt; result)</span><br><span class="line">            &#123;</span><br><span class="line">                result = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+		<p>U盘写保护相当于只读也就是说修改内容但不能保存，是专门为u盘防病毒而设计的。</p>
+<p>有些U盘有一个可以拨动的键，直接可以控制写保护。</p>
+<p>但是有些U盘却没有这个键，但是仍然会遇到些保护的情况。而且通过网上的一些方法都很难解除写保护，比如说格式化（快速和非快速格式化都不行）。</p>
+<p>直到后来使用了DiskGenius，DiskGenius本来是一个磁盘分区和数据恢复的工具，这里就使用它将U盘重新建立分区，然后格式化，只需要一会会儿时间，就解除了U盘的写保护了，注意格式化之前先备份数据哦！</p>
+<p>如图：<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/U盘写保护之后使用DiskGenius格式化问题解决了.jpg" alt="1"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -124,13 +120,13 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+  <a class="article-category-link" href="/categories/useful-technic/">useful technic</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/分治/">分治</a>
+  <span></span> <a href="/tags/U盘/">U盘</a><a href="/tags/useful-technic/">useful technic</a>
   </div>
 
 </div>
@@ -139,7 +135,7 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://woodsjiang.com/2015/04/20/leetcode-Find-Minimum-in-Rotated-Sorted-Array/" data-title="[leetcode]Find Minimum in Rotated Sorted Array | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  <div data-url="http://woodsjiang.com/2015/06/28/U盘写保护且不能格式化的解决方案/" data-title="U盘写保护且不能格式化的解决方案 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -152,19 +148,11 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/22/函数指针的定义方法/" title="函数指针的定义方法">
-  <strong>上一篇：</strong><br/>
-  <span>
-  函数指针的定义方法</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/14/leetcode-Compare-Version-Numbers/"  title="[leetcode]Compare Version Numbers">
+<a href="/2015/06/22/python-x-y的一个bug/"  title="python(x,y)的一个bug">
  <strong>下一篇：</strong><br/> 
- <span>[leetcode]Compare Version Numbers
+ <span>python(x,y)的一个bug
 </span>
 </a>
 </div>
@@ -198,7 +186,7 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数组中无重复元素"><span class="toc-number">1.</span> <span class="toc-text">数组中无重复元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组中有重复元素"><span class="toc-number">2.</span> <span class="toc-text">数组中有重复元素</span></a></li></ol>
+ 
  
   </div>
 

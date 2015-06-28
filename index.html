@@ -80,6 +80,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/06/28/U盘写保护且不能格式化的解决方案/" title="U盘写保护且不能格式化的解决方案" itemprop="url">U盘写保护且不能格式化的解决方案</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-28T00:23:56.000Z" itemprop="datePublished"> 发表于 2015-06-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>U盘写保护相当于只读也就是说修改内容但不能保存，是专门为u盘防病毒而设计的。</p>
+<p>有些U盘有一个可以拨动的键，直接可以控制写保护。</p>
+<p>但是有些U盘却没有这个键，但是仍然会遇到些保护的情况。而且通过网上的一些方法都很难解除写保护，比如说格式化（快速和非快速格式化都不行）。</p>
+<p>直到后来使用了DiskGenius，DiskGenius本来是一个磁盘分区和数据恢复的工具，这里就使用它将U盘重新建立分区，然后格式化，只需要一会会儿时间，就解除了U盘的写保护了，注意格式化之前先备份数据哦！</p>
+<p>如图：<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/U盘写保护之后使用DiskGenius格式化问题解决了.jpg" alt="1"></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/useful-technic/">useful technic</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/U盘/">U盘</a><a href="/tags/useful-technic/">useful technic</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/06/28/U盘写保护且不能格式化的解决方案/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/06/22/python-x-y的一个bug/" title="python(x,y)的一个bug" itemprop="url">python(x,y)的一个bug</a>
   </h1>
   <p class="article-author">By
@@ -707,79 +774,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/23/字符串编辑距离/" title="字符串编辑距离" itemprop="url">字符串编辑距离</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-23T00:13:00.000Z" itemprop="datePublished"> 发表于 2015-04-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="编辑距离">编辑距离</h1><p><strong>编辑距离</strong>，又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。</p>
-<p>例如将kitten一字转成sitting：</p>
-<ol>
-<li>sitten （k→s）</li>
-<li>sittin （e→i）</li>
-<li>sitting （→g）</li>
-</ol>
-<p>俄罗斯科学家Vladimir Levenshtein在1965年提出这个概念。（来源于<a href="http://www.wikiwand.com/zh-cn/%E7%B7%A8%E8%BC%AF%E8%B7%9D%E9%9B%A2" target="_blank" rel="external">维基百科</a> ）</p>
-<h1 id="思路">思路</h1><p>采用动态规划求解，下面是状态转移方程<br>if i==0 &amp;&amp; j==0, dp[i][j] = 0;<br>if i==0 &amp;&amp; j&gt;0,  dp[i][j] = j;<br>if i&gt;0  &amp;&amp; j==0, dp[i][j] = i;<br>if i&gt;=1 &amp;&amp; j&gt;=1, dp[i][j] = min(min(dp[i-1][j],dp[i][j-1])+1,dp[i-1][j-1]+same)<br>上面的same满足如下条件<br>if s1[i-1]==s2[j-1], same=0;<br>else same = 1;<br>具体实现就比较简单了。</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MIN(a,b) (a)&lt;(b)?(a):(b)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> MAX_LEN = <span class="number">100</span>;     <span class="comment">// 字符串最大长度</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> g_dp[MAX_LEN][MAX_LEN];  <span class="comment">// 避免频繁的申请空间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Levenshtein</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = s1.size();</span><br><span class="line">    <span class="keyword">int</span> len2 = s2.size();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len1; i++)</span><br><span class="line">        g_dp[i][<span class="number">0</span>] = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len2; i++)</span><br><span class="line">        g_dp[<span class="number">0</span>][i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len1; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len2; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> same = s1[i - <span class="number">1</span>] == s2[j - <span class="number">1</span>] ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">            g_dp[i][j] = MIN(MIN(g_dp[i-<span class="number">1</span>][j], g_dp[i][j-<span class="number">1</span>])+<span class="number">1</span>, g_dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+same);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> g_dp[len1][len2];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s1 = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="built_in">string</span> s2 = <span class="string">"else"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; Levenshtein(s1, s2) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出矩阵</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= s1.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= s2.size(); j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; g_dp[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="输出结果">输出结果</h1><p>3<br>0 1 2 3 4<br>1 1 2 3 4<br>2 1 2 3 3<br>3 1 1 2 3<br>4 1 1 2 3<br>5 1 2 2 3</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Algorithm/">Algorithm</a><a href="/tags/动态规划/">动态规划</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/23/字符串编辑距离/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -826,6 +820,10 @@
 		  
 		
 		  
+			<li><a href="/categories/useful-technic/" title="useful technic">useful technic<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/感悟/" title="感悟">感悟<sup>1</sup></a></li>
 		  
 		
@@ -859,11 +857,15 @@
 			
 		
 			
+				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/分治/" title="分治">分治<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
 			
 		
 			
@@ -875,11 +877,7 @@
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
+				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
 			
 		
 			
@@ -887,7 +885,15 @@
 			
 		
 			
-				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/useful-technic/" title="useful technic">useful technic<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/U盘/" title="U盘">U盘<sup>1</sup></a></li>
 			
 		
 			
@@ -899,7 +905,7 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>
