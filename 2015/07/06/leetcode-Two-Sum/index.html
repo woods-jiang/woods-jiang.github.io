@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[leetcode]Best Time to Buy and Sell Stock II | Woods Jiang</title>
+    <title>[leetcode]Two Sum | Woods Jiang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Woods Jiang">
     
 
     
-    <meta name="description" content="题目Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.
-Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie,">
+    <meta name="description" content="题目Given an array of integers, find two numbers such that they add up to a specific target number.
+The function twoSum should return indices of the two numbers such that they add up to the target, wher">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[leetcode]Best Time to Buy and Sell Stock II">
-<meta property="og:url" content="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-II/index.html">
+<meta property="og:title" content="[leetcode]Two Sum">
+<meta property="og:url" content="http://woodsjiang.com/2015/07/06/leetcode-Two-Sum/index.html">
 <meta property="og:site_name" content="Woods Jiang">
-<meta property="og:description" content="题目Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.
-Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie,">
+<meta property="og:description" content="题目Given an array of integers, find two numbers such that they add up to a specific target number.
+The function twoSum should return indices of the two numbers such that they add up to the target, wher">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[leetcode]Best Time to Buy and Sell Stock II">
-<meta name="twitter:description" content="题目Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.
-Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie,">
+<meta name="twitter:title" content="[leetcode]Two Sum">
+<meta name="twitter:description" content="题目Given an array of integers, find two numbers such that they add up to a specific target number.
+The function twoSum should return indices of the two numbers such that they add up to the target, wher">
 
     
     <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
@@ -81,14 +81,14 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-II/" title="[leetcode]Best Time to Buy and Sell Stock II" itemprop="url">[leetcode]Best Time to Buy and Sell Stock II</a>
+      <a href="/2015/07/06/leetcode-Two-Sum/" title="[leetcode]Two Sum" itemprop="url">[leetcode]Two Sum</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-25T02:41:22.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
+    <time datetime="2015-07-06T15:48:37.000Z" itemprop="datePublished"> 发表于 2015-07-06</time>
     
   </p>
 </header>
@@ -97,18 +97,16 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-number">4.</span> <span class="toc-text">分析</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
-<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<h1 id="思路">思路</h1><p>参考上一篇文章<a href="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" target="_blank" rel="external">Best Time to Buy and Sell Stock</a>，在上一个题目中，只能完完成一次交易，这里将其拓展了，可以进行任意次交易。</p>
-<p>仍然采用<code>minPrice</code>来保存局部的最小值，当<code>prices[i] &gt; prices[i+1]</code>时，说明数组元素开始下降，需要立即更行profit的值</p>
-<p>同时更新<code>minPrice</code>的值，注意这里是用<code>prices[i]</code>的值更新<code>minPrice</code>，而不是较小的<code>prices[i+1]</code>来更新，因为要考虑到溢出的问题，在if里面其实就已经判断了，<code>i==prices.size()-1</code>的条件。这里的<code>minPrice</code>更新后，其实是等于前一个单调区间的最大值，不过没关系，到下一次循环的时候立刻就会被更新。</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> minPrice = INT_MAX, profit = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(i == prices.size()</span>-1 || prices[i] &gt; prices[i+1])</span><br><span class="line">            </span>&#123;</span><br><span class="line">                profit = profit + prices[i] - minPrice;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="分析">分析</h1><p>时间复杂度$O(n)$，空间复杂度为$O(1)$</p>
-  
+		<h1 id="题目">题目</h1><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p><em>Input</em>: numbers={2, 7, 11, 15}, target=9<br><em>Output</em>: index1=1, index2=2</p>
+<h1 id="思路">思路</h1><p>使用一个map来存储nums[i] - target的值，然后遍历nums，发现其中nums中某一个值等于map中的某一个值，则说明已经扎到了一对值，能够使得，两个数相加等于target。</p>
+<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> twoSum(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="stl_container"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;</span> m;</span><br><span class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> result;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(m.find(nums[i]) != m.end())</span><br><span class="line">            &#123;</span><br><span class="line">                result.push_back(m[nums[i]]+<span class="number">1</span>);</span><br><span class="line">                result.push_back(i+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            m[target - nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -121,7 +119,7 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/贪心/">贪心</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
   </div>
 
 </div>
@@ -130,7 +128,7 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-II/" data-title="[leetcode]Best Time to Buy and Sell Stock II | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  <div data-url="http://woodsjiang.com/2015/07/06/leetcode-Two-Sum/" data-title="[leetcode]Two Sum | Woods Jiang" data-tsina="5059000554" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -143,19 +141,11 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-III/" title="[leetcode]Best Time to Buy and Sell Stock III">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [leetcode]Best Time to Buy and Sell Stock III</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/"  title="[leetcode]Best Time to Buy and Sell Stock">
+<a href="/2015/06/28/U盘写保护且不能格式化的解决方案/"  title="U盘写保护且不能格式化的解决方案">
  <strong>下一篇：</strong><br/> 
- <span>[leetcode]Best Time to Buy and Sell Stock
+ <span>U盘写保护且不能格式化的解决方案
 </span>
 </a>
 </div>
@@ -189,7 +179,7 @@ Design an algorithm to find the maximum profit. You may complete as many transac
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-number">4.</span> <span class="toc-text">分析</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
  
   </div>
 
