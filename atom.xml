@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Talk less. Think more. Do more than more.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://woodsjiang.com/"/>
-  <updated>2015-07-06T15:55:00.827Z</updated>
+  <updated>2015-07-07T15:29:27.457Z</updated>
   <id>http://woodsjiang.com/</id>
   
   <author>
@@ -13,6 +13,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[mac上配置protobuf+python环境]]></title>
+    <link href="http://woodsjiang.com/2015/07/07/mac%E4%B8%8A%E9%85%8D%E7%BD%AEprotobuf-python%E7%8E%AF%E5%A2%83/"/>
+    <id>http://woodsjiang.com/2015/07/07/mac上配置protobuf-python环境/</id>
+    <published>2015-07-07T15:15:40.000Z</published>
+    <updated>2015-07-07T15:29:27.457Z</updated>
+    <content type="html"><![CDATA[<h1 id="源码安装的问题">源码安装的问题</h1><p>在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。</p>
+<h1 id="结果过程">结果过程</h1><p>首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./autogen.sh</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make check</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
+<p>到这里，protobuf应该是可以用了，但是却无法导入一些python包。</p>
+<p>需要到源代码下面的python目录下，运行如下命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python setup.py build</span><br><span class="line">$ python setup.py test</span><br><span class="line">$ python setup.py install</span><br></pre></td></tr></table></figure></p>
+<p>OK，到此大功告成</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="源码安装的问题">源码安装的问题</h1><p>在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。</p>
+<h1 id="结果过程">结果过程</h1><p>首先还是按照README.md]]>
+    </summary>
+    
+      <category term="protobuf" scheme="http://woodsjiang.com/tags/protobuf/"/>
+    
+      <category term="python" scheme="http://woodsjiang.com/tags/python/"/>
+    
+      <category term="protobuf" scheme="http://woodsjiang.com/categories/protobuf/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[[leetcode]Two Sum]]></title>
@@ -534,31 +559,6 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
       <category term="Algorithm" scheme="http://woodsjiang.com/tags/Algorithm/"/>
     
       <category term="Algorithm" scheme="http://woodsjiang.com/categories/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[K-fold交叉验证]]></title>
-    <link href="http://woodsjiang.com/2015/04/07/K-fold%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/"/>
-    <id>http://woodsjiang.com/2015/04/07/K-fold交叉验证/</id>
-    <published>2015-04-07T03:16:27.000Z</published>
-    <updated>2015-04-07T08:18:14.716Z</updated>
-    <content type="html"><![CDATA[<h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
-<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测试集Test。</p>
-<p>二、再将训练集Train分成<code>K</code>份，做交叉验证</p>
-<p>   (1) 现在从模型$M_{1}$开始，将数据分成<code>K</code>份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一个不同的测试集，剩下的9份作为训练集，直到10份数据每一分都做过一次测试集为止，这时，我们得到10个评分，将这10个评分取平均值，得到模型M1的评分$f_1$。</p>
-<p>   (2) 现在开始对模型$M_2$做评分，跟上面采用一样的验证方法，最终得到评分$f_2$</p>
-<p>   (3) m个模型，一共得到了m个评分，最终取效果最好的那个模型$M_i$。</p>
-<p>三、使用这个评分最好的模型$M_i$的参数，对所有的训练集Train再训练一次。最终数据就训练好了，然后在最开始划分的测试数据集Test上进行测试。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
-<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测]]>
-    </summary>
-    
-      <category term="Machine Learning" scheme="http://woodsjiang.com/tags/Machine-Learning/"/>
-    
-      <category term="Machine Learning" scheme="http://woodsjiang.com/categories/Machine-Learning/"/>
     
   </entry>
   

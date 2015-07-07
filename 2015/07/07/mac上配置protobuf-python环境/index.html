@@ -4,37 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>找出词典中所有的变位词 | Woods Jiang</title>
+    <title>mac上配置protobuf+python环境 | Woods Jiang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Woods Jiang">
     
 
     
-    <meta name="description" content="什么是变位词两个词语所有的字母个数相同，但是字母顺序不一样的词语，成他们互为对方的变位词
-问题描述给定一本词典，找出词典中的所有变位词
-解决思路设置一个map来存储变位词，key是每个单词排列好的数序，value是一个存放string的set，用来存放所有的变位词。
-依次扫描每一个单词，并且排序
-将排序好的单词作为key存放在map中，而单词本身存放在value的set容器中。
-遍历输出map，得">
+    <meta name="description" content="源码安装的问题在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。
+结果过程首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：12345$ ./autogen.sh$ ./configure$ make$ make check$ make install
+到这里，protobuf应该是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="找出词典中所有的变位词">
-<meta property="og:url" content="http://woodsjiang.com/2015/04/09/找出词典中所有的变位词/index.html">
+<meta property="og:title" content="mac上配置protobuf+python环境">
+<meta property="og:url" content="http://woodsjiang.com/2015/07/07/mac上配置protobuf-python环境/index.html">
 <meta property="og:site_name" content="Woods Jiang">
-<meta property="og:description" content="什么是变位词两个词语所有的字母个数相同，但是字母顺序不一样的词语，成他们互为对方的变位词
-问题描述给定一本词典，找出词典中的所有变位词
-解决思路设置一个map来存储变位词，key是每个单词排列好的数序，value是一个存放string的set，用来存放所有的变位词。
-依次扫描每一个单词，并且排序
-将排序好的单词作为key存放在map中，而单词本身存放在value的set容器中。
-遍历输出map，得">
+<meta property="og:description" content="源码安装的问题在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。
+结果过程首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：12345$ ./autogen.sh$ ./configure$ make$ make check$ make install
+到这里，protobuf应该是">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="找出词典中所有的变位词">
-<meta name="twitter:description" content="什么是变位词两个词语所有的字母个数相同，但是字母顺序不一样的词语，成他们互为对方的变位词
-问题描述给定一本词典，找出词典中的所有变位词
-解决思路设置一个map来存储变位词，key是每个单词排列好的数序，value是一个存放string的set，用来存放所有的变位词。
-依次扫描每一个单词，并且排序
-将排序好的单词作为key存放在map中，而单词本身存放在value的set容器中。
-遍历输出map，得">
+<meta name="twitter:title" content="mac上配置protobuf+python环境">
+<meta name="twitter:description" content="源码安装的问题在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。
+结果过程首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：12345$ ./autogen.sh$ ./configure$ make$ make check$ make install
+到这里，protobuf应该是">
 
     
     <link rel="alternative" href="/atom.xml" title="Woods Jiang" type="application/atom+xml">
@@ -93,14 +84,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/09/找出词典中所有的变位词/" title="找出词典中所有的变位词" itemprop="url">找出词典中所有的变位词</a>
+      <a href="/2015/07/07/mac上配置protobuf-python环境/" title="mac上配置protobuf+python环境" itemprop="url">mac上配置protobuf+python环境</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-09T11:34:04.000Z" itemprop="datePublished"> 发表于 2015-04-09</time>
+    <time datetime="2015-07-07T15:15:40.000Z" itemprop="datePublished"> 发表于 2015-07-07</time>
     
   </p>
 </header>
@@ -109,30 +100,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是变位词"><span class="toc-number">1.</span> <span class="toc-text">什么是变位词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题描述"><span class="toc-number">2.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决思路"><span class="toc-number">3.</span> <span class="toc-text">解决思路</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#源码安装的问题"><span class="toc-number">1.</span> <span class="toc-text">源码安装的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果过程"><span class="toc-number">2.</span> <span class="toc-text">结果过程</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="什么是变位词">什么是变位词</h1><p>两个词语所有的字母个数相同，但是字母顺序不一样的词语，成他们互为对方的变位词</p>
-<h1 id="问题描述">问题描述</h1><p>给定一本词典，找出词典中的所有变位词</p>
-<h1 id="解决思路">解决思路</h1><p>设置一个map来存储变位词，key是每个单词排列好的数序，value是一个存放string的set，用来存放所有的变位词。</p>
-<pre><code>依次扫描每一个单词，并且排序
-将排序好的单词作为<span class="variable">key</span>存放在<span class="built_in">map</span>中，而单词本身存放在value的<span class="built_in">set</span>容器中。
-遍历输出<span class="built_in">map</span>，得到变位词表
-</code></pre><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;fstream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;map&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;set&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;algorithm&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">charcomp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> x, <span class="keyword">const</span> <span class="keyword">char</span> y)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  x &lt; y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输入文件名字</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">anagramme</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; filename)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="function">ifstream <span class="title">ifs</span><span class="params">(filename)</span></span>;</span><br><span class="line">    <span class="function">ofstream <span class="title">ofs</span><span class="params">("output.txt")</span></span>;</span><br><span class="line">    <span class="built_in">string</span> word;</span><br><span class="line">    <span class="stl_container"><span class="built_in">map</span> &lt; <span class="built_in">string</span>, <span class="stl_container"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span> wordmap;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取词典</span></span><br><span class="line">    <span class="keyword">while</span> (ifs &gt;&gt; word)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> strTmp = word;</span><br><span class="line">        sort(word.begin(), word.end(), charcomp);</span><br><span class="line">        wordmap[word].insert(strTmp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历输出</span></span><br><span class="line">    <span class="stl_container"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="stl_container"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;</span>&gt;</span>::iterator mapIt = wordmap.begin();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (; mapIt != wordmap.end(); ++mapIt)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="stl_container"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;</span>::iterator setIt = (mapIt-&gt;second).begin();</span><br><span class="line">        <span class="keyword">for</span> (; setIt != (mapIt-&gt;second).end(); ++setIt)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; *setIt &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">            ofs &lt;&lt; *setIt &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">        ofs &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ifs.close();</span><br><span class="line">    ofs.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    anagramme(<span class="string">"dict.txt"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+		<h1 id="源码安装的问题">源码安装的问题</h1><p>在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。</p>
+<h1 id="结果过程">结果过程</h1><p>首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./autogen.sh</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make check</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
+<p>到这里，protobuf应该是可以用了，但是却无法导入一些python包。</p>
+<p>需要到源代码下面的python目录下，运行如下命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python setup.py build</span><br><span class="line">$ python setup.py test</span><br><span class="line">$ python setup.py install</span><br></pre></td></tr></table></figure></p>
+<p>OK，到此大功告成</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  <a class="article-category-link" href="/categories/protobuf/">protobuf</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Algorithm/">Algorithm</a>
+  <span></span> <a href="/tags/protobuf/">protobuf</a><a href="/tags/python/">python</a>
   </div>
 
 </div>
@@ -141,7 +131,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://woodsjiang.com/2015/04/09/找出词典中所有的变位词/" data-title="找出词典中所有的变位词 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
+	  <div data-url="http://woodsjiang.com/2015/07/07/mac上配置protobuf-python环境/" data-title="mac上配置protobuf+python环境 | Woods Jiang" data-tsina="5059000554" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,19 +144,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/09/C++单例模式/" title="C++单例模式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  C++单例模式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/07/K-fold交叉验证/"  title="K-fold交叉验证">
+<a href="/2015/07/06/leetcode-Two-Sum/"  title="[leetcode]Two Sum">
  <strong>下一篇：</strong><br/> 
- <span>K-fold交叉验证
+ <span>[leetcode]Two Sum
 </span>
 </a>
 </div>
@@ -200,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是变位词"><span class="toc-number">1.</span> <span class="toc-text">什么是变位词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题描述"><span class="toc-number">2.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决思路"><span class="toc-number">3.</span> <span class="toc-text">解决思路</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#源码安装的问题"><span class="toc-number">1.</span> <span class="toc-text">源码安装的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果过程"><span class="toc-number">2.</span> <span class="toc-text">结果过程</span></a></li></ol>
  
   </div>
 

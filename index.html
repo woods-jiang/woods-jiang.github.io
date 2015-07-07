@@ -80,6 +80,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/07/07/mac上配置protobuf-python环境/" title="mac上配置protobuf+python环境" itemprop="url">mac上配置protobuf+python环境</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-07T15:15:40.000Z" itemprop="datePublished"> 发表于 2015-07-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="源码安装的问题">源码安装的问题</h1><p>在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。</p>
+<h1 id="结果过程">结果过程</h1><p>首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./autogen.sh</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make check</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
+<p>到这里，protobuf应该是可以用了，但是却无法导入一些python包。</p>
+<p>需要到源代码下面的python目录下，运行如下命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python setup.py build</span><br><span class="line">$ python setup.py test</span><br><span class="line">$ python setup.py install</span><br></pre></td></tr></table></figure></p>
+<p>OK，到此大功告成</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/protobuf/">protobuf</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/protobuf/">protobuf</a><a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/07/mac上配置protobuf-python环境/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/07/06/leetcode-Two-Sum/" title="[leetcode]Two Sum" itemprop="url">[leetcode]Two Sum</a>
   </h1>
   <p class="article-author">By
@@ -705,73 +772,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" title="[leetcode]Best Time to Buy and Sell Stock" itemprop="url">[leetcode]Best Time to Buy and Sell Stock</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-25T02:28:20.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
-<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
-<h1 id="思路">思路</h1><p>采用动态规划的思想，使用minPrice保存已经扫描到的最小值，如果当前价格-minPrice大于profit，即存在更大利益，更新profit的值。整个思路都比较简单</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> minPrice = INT_MAX, profit = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(prices[i] - minPrice &gt; profit)</span></span><br><span class="line">            </span>&#123;</span><br><span class="line">                profit = prices[i] - minPrice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="分析">分析</h1><p>时间复杂度$O(n)$，空间复杂度为$O(1)$</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/贪心/">贪心</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -811,6 +811,10 @@
 		
 		  
 			<li><a href="/categories/movie/" title="movie">movie<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/protobuf/" title="protobuf">protobuf<sup>1</sup></a></li>
 		  
 		
 		  
@@ -863,6 +867,10 @@
 			
 		
 			
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
 			
 		
@@ -883,7 +891,7 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/protobuf/" title="protobuf">protobuf<sup>1</sup></a></li>
 			
 		
 			

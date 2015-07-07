@@ -80,6 +80,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" title="[leetcode]Best Time to Buy and Sell Stock" itemprop="url">[leetcode]Best Time to Buy and Sell Stock</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-25T02:28:20.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
+<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<h1 id="思路">思路</h1><p>采用动态规划的思想，使用minPrice保存已经扫描到的最小值，如果当前价格-minPrice大于profit，即存在更大利益，更新profit的值。整个思路都比较简单</p>
+<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> minPrice = INT_MAX, profit = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(prices[i] - minPrice &gt; profit)</span></span><br><span class="line">            </span>&#123;</span><br><span class="line">                profit = prices[i] - minPrice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="分析">分析</h1><p>时间复杂度$O(n)$，空间复杂度为$O(1)$</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/贪心/">贪心</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+  
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/24/leetcode-Search-For-A-Range/" title="[leetcode]Search For A Range" itemprop="url">[leetcode]Search For A Range</a>
   </h1>
   <p class="article-author">By
@@ -715,75 +782,6 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/07/K-fold交叉验证/" title="K-fold交叉验证" itemprop="url">K-fold交叉验证</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-07T03:16:27.000Z" itemprop="datePublished"> 发表于 2015-04-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="适用情况">适用情况</h1><p>假设你将要训练一组数据，现在有m个模型，由$M_{1…m}$表示，需要选择具体使用哪个模型。那么这时就可以用交叉验证来选择模型了。</p>
-<h1 id="具体过程">具体过程</h1><p>一、将数据集分为训练集Train和测试集Test。</p>
-<p>二、再将训练集Train分成<code>K</code>份，做交叉验证</p>
-<p>   (1) 现在从模型$M_{1}$开始，将数据分成<code>K</code>份（K=10比较常见），将其中的9份作为训练集，剩下的一份作为测试集，得到一个评分；然后依次选取一个不同的测试集，剩下的9份作为训练集，直到10份数据每一分都做过一次测试集为止，这时，我们得到10个评分，将这10个评分取平均值，得到模型M1的评分$f_1$。</p>
-<p>   (2) 现在开始对模型$M_2$做评分，跟上面采用一样的验证方法，最终得到评分$f_2$</p>
-<p>   (3) m个模型，一共得到了m个评分，最终取效果最好的那个模型$M_i$。</p>
-<p>三、使用这个评分最好的模型$M_i$的参数，对所有的训练集Train再训练一次。最终数据就训练好了，然后在最开始划分的测试数据集Test上进行测试。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Machine-Learning/">Machine Learning</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/07/K-fold交叉验证/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -823,6 +821,10 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 		
 		  
 			<li><a href="/categories/movie/" title="movie">movie<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/protobuf/" title="protobuf">protobuf<sup>1</sup></a></li>
 		  
 		
 		  
@@ -875,6 +877,10 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 			
 		
 			
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
 			
 		
@@ -895,7 +901,7 @@ Would this affect <span class="keyword">the</span> <span class="command">run</sp
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/protobuf/" title="protobuf">protobuf<sup>1</sup></a></li>
 			
 		
 			
