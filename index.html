@@ -80,271 +80,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/07/mac上配置protobuf-python环境/" title="mac上配置protobuf+python环境" itemprop="url">mac上配置protobuf+python环境</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-07T15:15:40.000Z" itemprop="datePublished"> 发表于 2015-07-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="源码安装的问题">源码安装的问题</h1><p>在github上下载protobuf，按照README.md上面的方法安装，结果无法无法导入google中的python包。</p>
-<h1 id="结果过程">结果过程</h1><p>首先还是按照README.md中的方法，配置一下mac，装一下xcode。然后运行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./autogen.sh</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make check</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
-<p>到这里，protobuf应该是可以用了，但是却无法导入一些python包。</p>
-<p>需要到源代码下面的python目录下，运行如下命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python setup.py build</span><br><span class="line">$ python setup.py test</span><br><span class="line">$ python setup.py install</span><br></pre></td></tr></table></figure></p>
-<p>OK，到此大功告成</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/protobuf/">protobuf</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/protobuf/">protobuf</a><a href="/tags/python/">python</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/07/mac上配置protobuf-python环境/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/06/leetcode-Two-Sum/" title="[leetcode]Two Sum" itemprop="url">[leetcode]Two Sum</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-06T15:48:37.000Z" itemprop="datePublished"> 发表于 2015-07-06</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
-<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
-<p>You may assume that each input would have exactly one solution.</p>
-<p><em>Input</em>: numbers={2, 7, 11, 15}, target=9<br><em>Output</em>: index1=1, index2=2</p>
-<h1 id="思路">思路</h1><p>使用一个map来存储nums[i] - target的值，然后遍历nums，发现其中nums中某一个值等于map中的某一个值，则说明已经扎到了一对值，能够使得，两个数相加等于target。</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> twoSum(<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="stl_container"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;</span> m;</span><br><span class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> result;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(m.find(nums[i]) != m.end())</span><br><span class="line">            &#123;</span><br><span class="line">                result.push_back(m[nums[i]]+<span class="number">1</span>);</span><br><span class="line">                result.push_back(i+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            m[target - nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/leetcode/">leetcode</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/06/leetcode-Two-Sum/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/28/U盘写保护且不能格式化的解决方案/" title="U盘写保护且不能格式化的解决方案" itemprop="url">U盘写保护且不能格式化的解决方案</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-28T00:23:56.000Z" itemprop="datePublished"> 发表于 2015-06-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>U盘写保护相当于只读也就是说修改内容但不能保存，是专门为u盘防病毒而设计的。</p>
-<p>有些U盘有一个可以拨动的键，直接可以控制写保护。</p>
-<p>但是有些U盘却没有这个键，但是仍然会遇到些保护的情况。而且通过网上的一些方法都很难解除写保护，比如说格式化（快速和非快速格式化都不行）。</p>
-<p>直到后来使用了DiskGenius，DiskGenius本来是一个磁盘分区和数据恢复的工具，这里就使用它将U盘重新建立分区，然后格式化，只需要一会会儿时间，就解除了U盘的写保护了，注意格式化之前先备份数据哦！</p>
-<p>如图：<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/U盘写保护之后使用DiskGenius格式化问题解决了.jpg" alt="1"></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/useful-technic/">useful technic</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/U盘/">U盘</a><a href="/tags/useful-technic/">useful technic</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/06/28/U盘写保护且不能格式化的解决方案/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/06/22/python-x-y的一个bug/" title="python(x,y)的一个bug" itemprop="url">python(x,y)的一个bug</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-06-22T13:31:07.000Z" itemprop="datePublished"> 发表于 2015-06-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>初学python，使用的python(x,y)，里面自带的一个<strong>spyder</strong>然后在python console中输入式子，得到的结果<br><img src="http://7xifo1.com1.z0.glb.clouddn.com/python(x,y)的一个bug.png" alt="1"></p>
-<p>然后在程序里面也这样用了，结果始终得不到自己想要的结果，后来调试才发现，x全是0，因为python里面如果是整数除以整数，默认是不会给你转换成double的（C++以及其他很多语言都是这样子，matlab似乎全都看成double的）。在其他python的控制台中，得到的结果都是0，就这个spyder这么奇怪。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/python/">python</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/python/">python</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/06/22/python-x-y的一个bug/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/06/22/《当幸福来敲门》观后感/" title="《当幸福来敲门》观后感" itemprop="url">《当幸福来敲门》观后感</a>
   </h1>
   <p class="article-author">By
@@ -489,293 +224,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/27/小米2015暑假实习生招聘笔试题/" title="小米2015暑假实习生招聘笔试题" itemprop="url">小米2015暑假实习生招聘笔试题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-27T11:55:46.000Z" itemprop="datePublished"> 发表于 2015-04-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="第一题">第一题</h1><p>题目：判断两个int型的数有多少位不同？</p>
-<p>思路：将两个数异或之后，两个数相同的位为0，不同的位为1，然后求新数中，一有多少个1。</p>
-<p>代码如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">diff</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> move = m^n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (move)</span><br><span class="line">    &#123;</span><br><span class="line">        move = move&amp;(move - <span class="number">1</span>);</span><br><span class="line">        ++result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="第二题">第二题</h1><p>leetcode上的买股票的第三题。可参考我先前的博客。<a href="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-III/" target="_blank" rel="external">[leetcode]Best Time to Buy and Sell Stock III</a></p>
-<h1 id="第三题">第三题</h1><p>题目：找到一颗树中两个节点的最近公共祖先，树采用邻接矩阵存储</p>
-<p>思路：采用深度优先搜索，用栈记录遍历过程中，从根节点到遍历的当前节点的路径，找到第一个节点之后，栈1就不变了，然后接着前面没有遍历完的继续遍历，不过接下来用栈2来记录，直到找到第二个节点为止。</p>
-<p>注意，第一个节点找到之后，直接将栈1拷贝给栈2，然后接着遍历，使用栈2记录了</p>
-<p>两个栈分别存放了能够找到两个节点的路径，一次出栈，找到他们相同的那个元素，即为最近公共祖先</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;vector&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stack&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> TestUtils &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">    * 返回git树上两点的最近分割点</span><br><span class="line">    *</span><br><span class="line">    * @param matrix 邻接矩阵，表示git树，matrix[i][j] == '1'当且仅当git树中第i个和第j个节点有连接，节点0为git树的根节点</span><br><span class="line">    * @param indexA 节点A的index</span><br><span class="line">    * @param indexB 节点B的index</span><br><span class="line">    * @return 整型</span><br><span class="line">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSplitNode</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; matrix, <span class="keyword">int</span> indexA, <span class="keyword">int</span> indexB)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (matrix.size() &lt; <span class="number">0</span> || matrix[<span class="number">0</span>].size() &lt;= indexA || matrix[<span class="number">0</span>].size() &lt;= indexB)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="stl_container"><span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt;</span> st1;</span><br><span class="line">        st1.push(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> *visited = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.size()];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;matrix.size(); i++)</span><br><span class="line">            visited[i] = <span class="number">0</span>;</span><br><span class="line">        visited[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先找到其中一个节点</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> i = st1.top();</span><br><span class="line">            <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (; j&lt; matrix[i].size(); j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span> &amp;&amp; visited[j] == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (j == indexA || j == indexB)</span><br><span class="line">                    &#123;</span><br><span class="line">                        st1.push(j);</span><br><span class="line">                        visited[j] = <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    st1.push(j);</span><br><span class="line">                    i = j;</span><br><span class="line">                    visited[j] = <span class="number">1</span>;</span><br><span class="line">                    j = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (j == indexA || j == indexB)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            st1.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="stl_container"><span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt;</span> st2(st1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 再找到另外一个节点，栈s1保存找到第一个节点时，所访问过的节点，栈s2保存找到另外一个节点时，所访问过的节点</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> i = st2.top();</span><br><span class="line">            <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (; j&lt; matrix[i].size(); j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span> &amp;&amp; visited[j] == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (j == indexA || j == indexB)</span><br><span class="line">                    &#123;</span><br><span class="line">                        st1.push(j);</span><br><span class="line">                        visited[j] = <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                        </span><br><span class="line"></span><br><span class="line">                    st2.push(j);</span><br><span class="line">                    i = j;</span><br><span class="line">                    visited[j] = <span class="number">1</span>;</span><br><span class="line">                    j = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (j == indexA || j == indexB)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            st2.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> size1 = st1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = st2.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (size1 &gt; size2)</span><br><span class="line">        &#123;</span><br><span class="line">            st1.pop();</span><br><span class="line">            size1--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (size1 &lt; size2)</span><br><span class="line">        &#123;</span><br><span class="line">            st2.pop();</span><br><span class="line">            size2--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (st1.top() != st2.top() &amp;&amp; st2.size() &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            st1.pop();</span><br><span class="line">            st2.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">delete</span>[] visited;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> st1.top();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> sss = <span class="string">"1"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sss.find_first_not_of(<span class="string">'1'</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sss.find_last_not_of(<span class="string">'1'</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    TestUtils obj;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 图的邻接矩阵存储</span></span><br><span class="line">    <span class="built_in">string</span> s1 = <span class="string">"01011"</span>;</span><br><span class="line">    <span class="built_in">string</span> s2 = <span class="string">"10100"</span>;</span><br><span class="line">    <span class="built_in">string</span> s3 = <span class="string">"01000"</span>;</span><br><span class="line">    <span class="built_in">string</span> s4 = <span class="string">"10000"</span>;</span><br><span class="line">    <span class="built_in">string</span> s5 = <span class="string">"10000"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;</span> matrix;</span><br><span class="line"></span><br><span class="line">    matrix.push_back(s1);</span><br><span class="line">    matrix.push_back(s2);</span><br><span class="line">    matrix.push_back(s3);</span><br><span class="line">    matrix.push_back(s4);</span><br><span class="line">    matrix.push_back(s5);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; obj.getSplitNode(matrix, <span class="number">2</span>, <span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/面试题/">面试题</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/面试题/">面试题</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/27/小米2015暑假实习生招聘笔试题/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-IV/" title="[leetcode]Best Time to Buy and Sell Stock IV" itemprop="url">[leetcode]Best Time to Buy and Sell Stock IV</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-25T03:33:03.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
-<p>Design an algorithm to find the maximum profit. You may complete at most k transactions.</p>
-<p>Note:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<h1 id="思路">思路</h1><p>使用local来保存局部最优解，global来保存全局最优解</p>
-<p>状态转移方程如下：<br>local[i][j] = max(local[i-1][j]+diff, global[i-1][j]+max(diff,0))<br>global[i][j] = max(global[i-1][j],local[i][j])</p>
-<p>local[i][j]：当前达到第i天最多可以交易j次交易，而且最后一次交易在当天卖出，所得到的最大利润，注意，local的第j次交易必须发生在当天<br>global[i][j]：当前达到第i天最多可以进行j次交易，所得到的最大利润</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(prices.size() &lt; <span class="number">1</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 跟best-time-to-buy-and-sell-stock II一样</span></span><br><span class="line">        <span class="keyword">if</span>(k &gt;= prices.size()/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> otherMaxProfit(prices);</span><br><span class="line">            </span><br><span class="line">        <span class="comment">// local[i][j] = max(local[i-1][j]+diff, global[i-1][j]+max(diff,0))</span></span><br><span class="line">        <span class="comment">// global[i][j] = max(global[i-1][j],local[i][j])</span></span><br><span class="line">        <span class="comment">// local[i][j]：当前达到第i天最多可以交易j次交易，而且最后一次交易在当天卖出，所得到的最大利润，注意，local的第j次交易必须发生在当天</span></span><br><span class="line">        <span class="comment">// global[i][j]：当前达到第i天最多可以进行j次交易，所得到的最大利润</span></span><br><span class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> global(k+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> local(k+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> diff = prices[i] - prices[i-<span class="number">1</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=k; j&gt;<span class="number">0</span>; j--)</span><br><span class="line">            &#123;</span><br><span class="line">                local[j] = max(local[j]+diff, global[j-<span class="number">1</span>]+max(diff,<span class="number">0</span>));</span><br><span class="line">                global[j] = max(global[j], local[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> global[k];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 跟best-time-to-buy-and-sell-stock II一样</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">otherMaxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> minPrice = INT_MAX, profit = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(i == prices.size()</span>-1 || prices[i] &gt; prices[i+1])</span><br><span class="line">            </span>&#123;</span><br><span class="line">                profit = profit + prices[i] - minPrice;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="分析">分析</h1><p>时间复杂度为$O(n*k)$，空间复杂度为$2O(k)$</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/动态规划/">动态规划</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-IV/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-III/" title="[leetcode]Best Time to Buy and Sell Stock III" itemprop="url">[leetcode]Best Time to Buy and Sell Stock III</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-25T03:04:39.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
-<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
-<p><strong>Note</strong>:<br>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<h1 id="思路">思路</h1><p>参考上上一篇文章<a href="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" target="_blank" rel="external">Best Time to Buy and Sell Stock</a>，先前是只交易一次，现在是交易两次，那么我们采取同样的策略，遍历两边就是了</p>
-<p>我们使用一个辅助数组<code>maxProfits[0..i..n]</code>来保存第i天卖出，将获得的最大利益。</p>
-<p>第一次从左向右遍历，更新<code>maxProfits</code>数组，这样我们就知道了任意一天卖出股票之后获得的收益（只进行一次交易）</p>
-<p>第二次从右往左遍历，使用maxPrice保存局部区域的最大值，一旦发现<code>maxPrice - prices[i] + maxProfits[i] &gt; profit</code>，则更新profit，这里，profit就是保存两次交易i获得的最大值。</p>
-<p>这里稍微解释一下<code>maxPrice - prices[i] + maxProfits[i]</code>，maxProfits[i]前面已经说过了，是保存第一次交易在第i天完成时，获得的最大利益，而maxPrice - prices[i]则表示第i天买入，maxPrice那天卖出获得的最大利益，两者相加，则表示两次交易获得的最大利益</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = prices.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span> || n==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span> maxProfits(n,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> minPrice = prices[<span class="number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 从左向右遍历，只进行一次交易的情况下，每天卖出股票可以获得的最大收益</span></span><br><span class="line">        <span class="comment">// 存放在maxProfits数组中</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            maxProfits[i] = maxProfits[i-<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(prices[i]-minPrice &gt; maxProfits[i])</span></span><br><span class="line">            </span>&#123;</span><br><span class="line">                maxProfits[i] = prices[i] - minPrice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> profit = maxProfits[n-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> maxPrice = prices[n-<span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 从右向左遍历，找到两次交易可以获得的最大利益</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=n-<span class="number">2</span>; i&gt;<span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &gt;= maxPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                maxPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> p = maxPrice - prices[i] + maxProfits[i];</span><br><span class="line">                <span class="keyword">if</span>(p &gt; profit)</span><br><span class="line">                &#123;</span><br><span class="line">                    profit = p;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="分析">分析</h1><p>两次遍历时间复杂度均为$O(n)$，总的时间复杂度还是$O(n)$，空间复杂度为$O(n)$</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/动态规划/">动态规划</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-III/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-II/" title="[leetcode]Best Time to Buy and Sell Stock II" itemprop="url">[leetcode]Best Time to Buy and Sell Stock II</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://woodsjiang.com/about" title="Woods Jiang" target="_blank" itemprop="author">Woods Jiang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-25T02:41:22.000Z" itemprop="datePublished"> 发表于 2015-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><p>Say you have an array for which the $i^{th}$ element is the price of a given stock on day $i$.</p>
-<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
-<h1 id="思路">思路</h1><p>参考上一篇文章<a href="http://woodsjiang.com/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock/" target="_blank" rel="external">Best Time to Buy and Sell Stock</a>，在上一个题目中，只能完完成一次交易，这里将其拓展了，可以进行任意次交易。</p>
-<p>仍然采用<code>minPrice</code>来保存局部的最小值，当<code>prices[i] &gt; prices[i+1]</code>时，说明数组元素开始下降，需要立即更行profit的值</p>
-<p>同时更新<code>minPrice</code>的值，注意这里是用<code>prices[i]</code>的值更新<code>minPrice</code>，而不是较小的<code>prices[i+1]</code>来更新，因为要考虑到溢出的问题，在if里面其实就已经判断了，<code>i==prices.size()-1</code>的条件。这里的<code>minPrice</code>更新后，其实是等于前一个单调区间的最大值，不过没关系，到下一次循环的时候立刻就会被更新。</p>
-<h1 id="代码">代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> minPrice = INT_MAX, profit = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prices.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)</span><br><span class="line">            &#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(i == prices.size()</span>-1 || prices[i] &gt; prices[i+1])</span><br><span class="line">            </span>&#123;</span><br><span class="line">                profit = profit + prices[i] - minPrice;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="分析">分析</h1><p>时间复杂度$O(n)$，空间复杂度为$O(1)$</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/leetcode/">leetcode</a><a href="/tags/贪心/">贪心</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/25/leetcode-Best-Time-to-Buy-and-Sell-Stock-II/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-  
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -790,23 +238,13 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Algorithm/" title="Algorithm">Algorithm<sup>2</sup></a></li>
+		
 		  
 		
 		  
-			<li><a href="/categories/C-C/" title="C/C++">C/C++<sup>2</sup></a></li>
-		  
 		
 		  
-			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>2</sup></a></li>
-		  
 		
-		  
-			<li><a href="/categories/STL/" title="STL">STL<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/leetcode/" title="leetcode">leetcode<sup>11</sup></a></li>
 		  
 		
 		  
@@ -814,23 +252,15 @@
 		  
 		
 		  
-			<li><a href="/categories/protobuf/" title="protobuf">protobuf<sup>1</sup></a></li>
-		  
 		
 		  
-			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
-		  
 		
-		  
-			<li><a href="/categories/useful-technic/" title="useful technic">useful technic<sup>1</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/感悟/" title="感悟">感悟<sup>1</sup></a></li>
 		  
 		
-		  
-			<li><a href="/categories/面试题/" title="面试题">面试题<sup>1</sup></a></li>
 		  
 		
 		</ul>
@@ -843,35 +273,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>11</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Machine-Learning/" title="Machine Learning">Machine Learning<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/贪心/" title="贪心">贪心<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/分治/" title="分治">分治<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
+				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
 			
 		
 			
@@ -879,39 +281,35 @@
 			
 		
 			
-				<li><a href="/tags/面试题/" title="面试题">面试题<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/movie/" title="movie">movie<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/搜索/" title="搜索">搜索<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/protobuf/" title="protobuf">protobuf<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/useful-technic/" title="useful technic">useful technic<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/U盘/" title="U盘">U盘<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/STL/" title="STL">STL<sup>1</sup></a></li>
+		
 			
 		
 			
-				<li><a href="/tags/C/" title="C++">C++<sup>1</sup></a></li>
-			
 		
-			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 			
 		
 		</ul>
